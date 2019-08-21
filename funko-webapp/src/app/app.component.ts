@@ -1,10 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { LoginService } from './core/services/login.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  title = 'funko-collection-app';
+export class AppComponent implements OnInit {
+  isLogged: boolean;
+
+  constructor(private loginService: LoginService) { }
+
+  ngOnInit() {
+    this.loginService.autoAuthUser();
+    this.loginService.getAuthStatusListener().subscribe(response => {
+      this.isLogged = response;
+    });
+  }
 }

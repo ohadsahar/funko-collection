@@ -2,6 +2,9 @@
   width: 100%;
 }
 
+::ng-deep .dialog-login-component .mat-form-field-appearance-legacy .mat-form-field-wrapper {
+  margin-top: 3%;
+}
 .mat-dialog-title {
   font-weight: bold;
   text-align: center;

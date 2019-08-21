@@ -1,1 +1,35 @@
-<p>register-dialog works!</p>
+<div class="dialog-register-component">
+  <h2 mat-dialog-title>הרשמה</h2>
+  <mat-dialog-content class="mat-typography">
+    <form #registerForm="ngForm" (submit)="register(registerForm)" ngForm>
+      <mat-form-field class="full-width">
+        <input matInput type="email" name="email" #email="ngModel" ngModel autocomplete="email" required>
+        <mat-placeholder class="placeholder">הכנס את האיימיל שלך</mat-placeholder>
+        <mat-hint>לדוגמא: funko@gmail.com</mat-hint>
+        <mat-error *ngIf="email.invalid">האיימיל שלך לא בפורמט הנכון</mat-error>
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input matInput type="password" name="password" #password="ngModel" ngModel autocomplete="password" required>
+        <mat-placeholder class="placeholder">הכנס את סיסמתך</mat-placeholder>
+        <mat-hint>סיסמא צריכה להחליף 8 תווים</mat-hint>
+        <mat-error *ngIf="password.invalid">הסיסמא לא בפורמט הנכון</mat-error>
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input matInput type="number" name="age" #age="ngModel" ngModel autocomplete="age" min="6" max="120" required>
+        <mat-placeholder class="placeholder">הכנס את גילך</mat-placeholder>
+        <mat-hint>טווח הגילאים הוא 6 - 120</mat-hint>
+        <mat-error *ngIf="age.invalid">הגיל לא בפורמט הנכון</mat-error>
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input matInput type="text" name="favoritePop" #favoritePop="ngModel" ngModel autocomplete="favoritePop" required>
+        <mat-placeholder class="placeholder">הכנס את הפופ המועדף עלייך</mat-placeholder>
+        <mat-error *ngIf="favoritePop.invalid">חובה להכניס פופ מועדף</mat-error>
+      </mat-form-field>
+      <mat-dialog-actions align="end">
+        <button mat-raised-button color="primary" type="submit" cdkFocusInitial>הרשם</button>
+        <button mat-raised-button color="warn" mat-dialog-close id="cancel-button">ביטול</button>
+      </mat-dialog-actions>
+      {{alreadyExists}}
+    </form>
+  </mat-dialog-content>
+</div>

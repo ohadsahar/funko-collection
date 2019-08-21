@@ -1,0 +1,22 @@
+.dialog-register-component .full-width {
+  width: 100%;
+}
+
+::ng-deep .dialog-register-component .mat-form-field-appearance-legacy .mat-form-field-wrapper {
+  margin-top: 3%;
+}
+
+.mat-dialog-title {
+  font-weight: bold;
+  text-align: center;
+}
+
+#cancel-button {
+  margin-right: 3%;
+}
+
+.mat-dialog-actions {
+  margin: auto;
+  display: block;
+  margin-top: 5%;
+}
