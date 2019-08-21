@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
+import { DeviceDetectorService } from 'ngx-device-detector';
 import { LoginDialogComponent } from 'src/app/shared/dialogs/login-dialog/login-dialog.component';
 import { RegisterDialogComponent } from 'src/app/shared/dialogs/register-dialog/register-dialog.component';
-import { DeviceDetectorService } from 'ngx-device-detector';
 
 @Component({
   selector: 'app-login-system-navbar',

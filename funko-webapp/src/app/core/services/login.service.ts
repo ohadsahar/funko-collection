@@ -1,12 +1,12 @@
-import { MessageService } from './message.service';
-import { MatDialog } from '@angular/material';
-import { Injectable } from '@angular/core';
-import { RegisterInterface } from 'src/app/shared/interfaces/register.interface';
 import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
-import { LoginInterface } from 'src/app/shared/interfaces/login.interface';
-import { BehaviorSubject } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
+import { LoginInterface } from 'src/app/shared/interfaces/login.interface';
+import { RegisterInterface } from 'src/app/shared/interfaces/register.interface';
+import { environment } from 'src/environments/environment';
+import { MessageService } from './message.service';
 
 const backendUrl = environment.backendUrlUsers;
 

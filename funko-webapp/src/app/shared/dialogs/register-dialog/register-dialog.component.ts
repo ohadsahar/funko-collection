@@ -1,7 +1,7 @@
-import { MessageService } from './../../../core/services/message.service';
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { LoginService } from './../../../core/services/login.service';
+import { MessageService } from './../../../core/services/message.service';
 @Component({
   selector: 'app-register-dialog',
   templateUrl: './register-dialog.component.html',

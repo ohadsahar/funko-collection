@@ -21,7 +21,8 @@
         <mat-error *ngIf="age.invalid">הגיל לא בפורמט הנכון</mat-error>
       </mat-form-field>
       <mat-form-field class="full-width">
-        <input matInput type="text" name="favoritePop" #favoritePop="ngModel" ngModel autocomplete="favoritePop" required>
+        <input matInput type="text" name="favoritePop" #favoritePop="ngModel" ngModel autocomplete="favoritePop"
+          required>
         <mat-placeholder class="placeholder">הכנס את הפופ המועדף עלייך</mat-placeholder>
         <mat-error *ngIf="favoritePop.invalid">חובה להכניס פופ מועדף</mat-error>
       </mat-form-field>

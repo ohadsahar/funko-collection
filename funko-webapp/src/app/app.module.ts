@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DeviceDetectorModule } from 'ngx-device-detector';
-import { AngularMaterialModule } from './angular-material.module';
+import { AngularMaterialModule } from './modules/angular-material.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginSystemContentComponent } from './core/components/login-system/login-system-content/login-system-content.component';
