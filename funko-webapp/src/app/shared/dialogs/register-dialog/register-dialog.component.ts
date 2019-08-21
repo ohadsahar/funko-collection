@@ -1,3 +1,4 @@
+import { MatDialog } from '@angular/material';
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { LoginService } from './../../../core/services/login.service';

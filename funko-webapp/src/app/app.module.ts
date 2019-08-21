@@ -1,3 +1,5 @@
+import { UserProfileComponent } from './core/components/user-profile/user-profile.component';
+import { MainMenuComponent } from './core/components/main-menu/main-menu.component';
 import { AuthInterceptor } from './core/components/login-system/login-system-navbar/auth-interceptor.component';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -14,13 +16,16 @@ import { RegisterDialogComponent } from './shared/dialogs/register-dialog/regist
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
     LoginSystemContentComponent,
     LoginSystemNavbarComponent,
     LoginDialogComponent,
-    RegisterDialogComponent
+    RegisterDialogComponent,
+    UserProfileComponent,
+    MainMenuComponent
   ],
   imports: [
     BrowserModule,

@@ -1,3 +1,5 @@
-<app-login-system-navbar></app-login-system-navbar>
-<app-login-system-content></app-login-system-content>
+<app-login-system-navbar *ngIf="!isLogged"></app-login-system-navbar>
+<app-login-system-content *ngIf="!isLogged"></app-login-system-content>
+<app-main-menu *ngIf="isLogged"></app-main-menu>
+<app-user-profile *ngIf="isLogged"></app-user-profile>
 <router-outlet></router-outlet>
