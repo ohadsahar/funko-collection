@@ -16,12 +16,12 @@ export class LoginService {
   constructor(private http: HttpClient, private dialog: MatDialog, private router: Router, private messageService: MessageService) { }
 
   register(registerData: RegisterInterface) {
+    console.log(registerData);
     return this.http.post<{ message: RegisterInterface, success: boolean }>(`${backendUrl}/signup`, registerData);
   }
   login(loginData: LoginInterface) {
     this.http.post<{ message: any }>(`${backendUrl}/login`, loginData).subscribe(response => {
       if (response) {
-        console.log(response);
         localStorage.setItem('token', response.message.accessToken);
         this.authStatusListener.next(true);
         this.dialog.closeAll();

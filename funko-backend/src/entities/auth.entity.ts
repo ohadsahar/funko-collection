@@ -1,5 +1,4 @@
 import { Entity, Unique, PrimaryGeneratedColumn, CreateDateColumn, Column } from 'typeorm';
-
 @Entity()
 @Unique(['email'])
 export class AuthEntity {
@@ -21,6 +20,12 @@ export class AuthEntity {
     @Column()
     age: number;
 
+    @Column()
+    firstname: string;
+
+    @Column()
+    lastname: string;
+    
     @Column()
     favoritePop: string;
 

@@ -12,9 +12,15 @@
           </mat-card-header>
           <mat-divider id="header-divider"></mat-divider>
           <mat-card-content>
-            <p>גיל: {{age}}</p>
+            <p>שם מלא: {{userData?.firstname}} {{userData?.lastname}}</p>
             <mat-divider></mat-divider>
-            <p>פופ אהוב: {{favoritePop}}</p>
+            <p>איימיל: {{userData?.email}}</p>
+            <mat-divider></mat-divider>
+            <p>גיל: {{userData?.age}}</p>
+            <mat-divider></mat-divider>
+            <p>פופ אהוב: {{userData?.favoritePop}}</p>
+            <mat-divider></mat-divider>
+            <p>מס' פופים קיימים באוסף: {{userData?.numberOfPops}}</p>
             <mat-divider></mat-divider>
           </mat-card-content>
           <mat-card-actions>
@@ -25,18 +31,32 @@
       </div>
       <div class="col-sm-12 col-md-6 col-lg-6">
         <mat-card class="second-card">
-          <p>Favorite pop: Thor</p>
-          <p>Image: </p>
-          <mat-slide-toggle>Slide me!</mat-slide-toggle>
-          <mat-slide-toggle>Slide me!</mat-slide-toggle>
+          <mat-card-header>
+            <mat-card-title>הגדרות הפרופיל</mat-card-title>
+            <mat-card-subtitle>הגדרות אלו יקבעו את תצורתו של הקיר שלך</mat-card-subtitle>
+          </mat-card-header>
+          <mat-divider></mat-divider>
+          <h6>ציבורי</h6>
+          <mat-slide-toggle>ניתן לראות את האוסף שלי</mat-slide-toggle>
+          <mat-slide-toggle>ניתן לראות מידע אישי (פופ אהוב, גיל, וכד')</mat-slide-toggle>
+          <mat-slide-toggle>ניתן לשלוח לי הודעה</mat-slide-toggle>
+          <mat-divider id="header-divider"></mat-divider>
+          <h6>חברים</h6>
+          <mat-slide-toggle>ניתן לראות את האוסף שלי</mat-slide-toggle>
+          <mat-slide-toggle>ניתן לראות מידע אישי (פופ אהוב, גיל, וכד')</mat-slide-toggle>
+          <mat-slide-toggle>ניתן לשלוח לי הודעה</mat-slide-toggle>
         </mat-card>
         <div class="row">
           <div class="col-sm-12 col-md-12 col-lg-12">
             <mat-card class="third-card">
-              <p>Favorite pop: Thor</p>
-              <p>Image: </p>
-              <mat-slide-toggle>Slide me!</mat-slide-toggle>
-              <mat-slide-toggle>Slide me!</mat-slide-toggle>
+              <mat-card-header>
+                <mat-card-title>הגדרות חשבון</mat-card-title>
+                <mat-card-subtitle>חשוב טוב לפני נגיעה באפשרויות אלו</mat-card-subtitle>
+              </mat-card-header>
+              <mat-divider id="header-divider"></mat-divider>
+              <h6>מחיקה/הקפאת החשבון</h6>
+              <mat-slide-toggle>הקפאת החשבון</mat-slide-toggle>
+              <mat-slide-toggle>מחיקת החשבון לצמיתות</mat-slide-toggle>
             </mat-card>
           </div>
         </div>

@@ -1,4 +1,6 @@
 import * as bcrypt from 'bcryptjs';
+import { AuthEntity } from '../entities/auth.entity';
+import { RegisterDto } from '../components/auth/dto/register.dto';
 
 export async function hashPassword(password: string, salt: string) {
     return bcrypt.hash(password, salt);
@@ -6,4 +8,15 @@ export async function hashPassword(password: string, salt: string) {
 export async function validatePassword(password: string, salt: string, hashedPassword: string) {
     const hash = await bcrypt.hash(password, salt);
     return hash === hashedPassword;
+}
+export async function createRegisterObject(user: AuthEntity, registerData: RegisterDto) {
+    const salt = await bcrypt.genSalt();
+    user.email = registerData.email;
+    user.firstname = registerData.firstname;
+    user.lastname = registerData.lastname;
+    user.numberOfPops = registerData.numberOfPops;
+    user.age = registerData.age;
+    user.favoritePop = registerData.favoritePop;
+    user.salt = salt;
+    return user;
 }

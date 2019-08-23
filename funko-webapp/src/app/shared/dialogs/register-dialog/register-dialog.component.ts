@@ -1,30 +1,70 @@
-import { MatDialog } from '@angular/material';
-import { Component } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { RegisterInterface } from '../../interfaces/register.interface';
 import { LoginService } from './../../../core/services/login.service';
 import { MessageService } from './../../../core/services/message.service';
 @Component({
   selector: 'app-register-dialog',
   templateUrl: './register-dialog.component.html',
-  styleUrls: ['./register-dialog.component.scss']
+  styleUrls: ['./register-dialog.component.scss'],
+  providers: [
+    {
+      provide: STEPPER_GLOBAL_OPTIONS,
+      useValue: { showError: true }
+    }
+  ]
 })
-export class RegisterDialogComponent {
+export class RegisterDialogComponent implements OnInit {
 
   alreadyExists: string;
-  constructor(private loginService: LoginService, private messageService: MessageService) { }
+  firstFormGroup: FormGroup;
+  secondFormGroup: FormGroup;
+  thirdFormGroup: FormGroup;
+  userData: RegisterInterface = new RegisterInterface('', '', '', '', 0, '', 0);
+  constructor(private loginService: LoginService, private messageService: MessageService,
+    private formBuilder: FormBuilder) { }
 
-  register(form: NgForm) {
-    if (form.invalid) { return; }
-    this.loginService.register(form.value).subscribe(response => {
+  ngOnInit() {
+    this.onLoadComponent();
+  }
+
+  onLoadComponent() {
+    this.firstFormGroup = this.formBuilder.group({
+      email: ['', Validators.required],
+      firstname: ['', Validators.required],
+      lastname: ['', Validators.required]
+    });
+    this.secondFormGroup = this.formBuilder.group({
+      password: ['', Validators.required],
+      age: ['', Validators.required]
+    });
+    this.thirdFormGroup = this.formBuilder.group({
+      favoritePop: ['', Validators.required],
+      numberOfPops: ['', Validators.required]
+    });
+  }
+  register() {
+    this.createRegisterObject();
+    this.loginService.register(this.userData).subscribe(response => {
       if (!response.success) {
         this.alreadyExists = 'משתמש זה קיים במערכת';
       } else {
-        const loginData = { email: form.value.email.toLowerCase(), password: form.value.password };
+        const loginData = { email: this.userData.email.toLowerCase(), password: this.userData.password };
         this.loginService.login(loginData);
         this.messageService.successMessage('התחברת בהצלחה, מיד תועבר');
       }
     }, (error) => {
       this.messageService.failedMessage(error);
     });
+  }
+  createRegisterObject() {
+    this.userData.email = this.firstFormGroup.value.email;
+    this.userData.firstname = this.firstFormGroup.value.firstname;
+    this.userData.lastname = this.firstFormGroup.value.lastname;
+    this.userData.password = this.secondFormGroup.value.password;
+    this.userData.age = this.secondFormGroup.value.age;
+    this.userData.favoritePop = this.thirdFormGroup.value.favoritePop;
+    this.userData.numberOfPops = this.thirdFormGroup.value.numberOfPops;
   }
 }

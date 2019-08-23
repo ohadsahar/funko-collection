@@ -23,7 +23,6 @@ export class AuthController {
     async login(@Body() loginData: LoginDto) {
         try {
             const resultOfLogin = await this.authService.login(loginData);
-            console.log(resultOfLogin);
             return { message: resultOfLogin, success: true };
         } catch (error) {
             return { message: error, success: false };

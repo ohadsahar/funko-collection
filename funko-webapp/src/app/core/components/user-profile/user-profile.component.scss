@@ -65,6 +65,27 @@
   border-radius: 50%;
 }
 
+.profile-section h6 {
+  margin-top: 2%;
+}
+
+.profile-section .mat-slide-toggle {
+  word-break: break-all;
+  width: 100%;
+}
+
+::ng-deep .profile-section .mat-slide-toggle-bar {
+  background-color: rgba(255, 44, 83, 0.75);
+  margin-left: 2%;
+}
+
+::ng-deep .profile-section .mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
+  background-color: rgba(11, 255, 8, 0.92);
+}
+
+::ng-deep .profile-section .mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
+  background-color: white;
+}
 
 @media only screen and (max-width:800px) {
   .profile-section {
