@@ -3,4 +3,5 @@ export class RegisterInterface {
   password: string;
   age: number;
   favoritePop: string;
+  numberOfPops: number;
 }

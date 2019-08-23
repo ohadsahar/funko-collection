@@ -26,6 +26,12 @@
         <mat-placeholder class="placeholder">הכנס את הפופ המועדף עלייך</mat-placeholder>
         <mat-error *ngIf="favoritePop.invalid">חובה להכניס פופ מועדף</mat-error>
       </mat-form-field>
+      <mat-form-field class="full-width">
+          <input matInput type="numberOfPops" name="numberOfPops" #numberOfPops="ngModel" ngModel autocomplete="numberOfPops"
+            required>
+          <mat-placeholder class="placeholder">כמות הפופים שלך</mat-placeholder>
+          <mat-error *ngIf="favoritePop.invalid">חובה להכניס כמות פופים</mat-error>
+        </mat-form-field>
       <mat-dialog-actions align="end">
         <button mat-raised-button color="primary" type="submit" cdkFocusInitial>הרשם</button>
         <button mat-raised-button color="warn" mat-dialog-close id="cancel-button">ביטול</button>

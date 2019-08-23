@@ -19,7 +19,7 @@ export class RegisterDialogComponent {
       if (!response.success) {
         this.alreadyExists = 'משתמש זה קיים במערכת';
       } else {
-        const loginData = { email: form.value.username, password: form.value.password };
+        const loginData = { email: form.value.email.toLowerCase(), password: form.value.password };
         this.loginService.login(loginData);
         this.messageService.successMessage('התחברת בהצלחה, מיד תועבר');
       }

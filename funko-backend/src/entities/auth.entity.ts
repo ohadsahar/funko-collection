@@ -23,4 +23,7 @@ export class AuthEntity {
 
     @Column()
     favoritePop: string;
+
+    @Column()
+    numberOfPops: number;
 }

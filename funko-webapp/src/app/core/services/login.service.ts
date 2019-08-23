@@ -21,9 +21,11 @@ export class LoginService {
   login(loginData: LoginInterface) {
     this.http.post<{ message: any }>(`${backendUrl}/login`, loginData).subscribe(response => {
       if (response) {
+        console.log(response);
         localStorage.setItem('token', response.message.accessToken);
         this.authStatusListener.next(true);
         this.dialog.closeAll();
+        this.router.navigate(['profile']);
         this.messageService.successMessage('התחברת בהצלחה, מיד תועבר');
       }
     }, (error) => {

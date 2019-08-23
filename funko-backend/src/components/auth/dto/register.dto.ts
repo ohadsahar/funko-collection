@@ -4,4 +4,5 @@ export class RegisterDto {
     public password: string;
     public age: number;
     public favoritePop: string;
+    public numberOfPops: number;
 }

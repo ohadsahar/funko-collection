@@ -20,6 +20,7 @@ export class AuthService {
             const salt = await bcrypt.genSalt();
             user.email = registerData.email;
             user.salt = salt;
+            user.numberOfPops = registerData.numberOfPops;
             user.password = await authUtil.hashPassword(registerData.password, salt);
             user.age = registerData.age;
             user.favoritePop = registerData.favoritePop;
@@ -33,9 +34,12 @@ export class AuthService {
     }
     async login(loginData: LoginDto) {
         try {
+            console.log(loginData);
             const email = loginData.email;
             const finduser = await this.authRepository.findOne({ email });
+            console.log(finduser);
             if (finduser) {
+                console.log(finduser);
                 if (finduser && await authUtil.validatePassword(loginData.password, finduser.salt, finduser.password)) {
                     const payload: JwtPayload = { email };
                     const accessToken = await this.jwtService.sign(payload);

@@ -14,6 +14,7 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit() {
     this.loginService.getUserDataByToken().subscribe(response => {
+      console.log(response);
       this.email = response.message.email;
       this.favoritePop = response.message.favoritePop;
       this.age = response.message.age;
