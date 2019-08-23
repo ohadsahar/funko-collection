@@ -8,7 +8,11 @@ const backendUrl = environment.backendUrlSettings;
 export class UserProfileService {
 
   constructor(private http: HttpClient) { }
+
+  createPrivacySettings(privacySettingData: PrivacySettings) {
+    return this.http.post<{message: PrivacySettings}>(`${backendUrl}/create-privacy-settings`, privacySettingData);
+  }
   updatePrivacySettings(privacySettingsData: PrivacySettings) {
-    return this.http.put<{ message: PrivacySettings }>(`${backendUrl}/user-privacy-setting`, privacySettingsData);
+    return this.http.put<{ message: PrivacySettings }>(`${backendUrl}/user-setting`, privacySettingsData);
   }
 }

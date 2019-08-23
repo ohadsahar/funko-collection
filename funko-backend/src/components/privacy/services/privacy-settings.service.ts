@@ -7,4 +7,8 @@ export class PrivacySettingsService {
     async updatePrivacy(privacySettingDto: PrivacySettingDto) {
         return privacySettingDto;
     }
+
+    async createPrivacy(privacySettingDto: PrivacySettingDto) {
+        return privacySettingDto;
+    }
 }
