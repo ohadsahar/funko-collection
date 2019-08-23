@@ -37,14 +37,18 @@
           </mat-card-header>
           <mat-divider></mat-divider>
           <h6>ציבורי</h6>
-          <mat-slide-toggle>ניתן לראות את האוסף שלי</mat-slide-toggle>
-          <mat-slide-toggle>ניתן לראות מידע אישי (פופ אהוב, גיל, וכד')</mat-slide-toggle>
-          <mat-slide-toggle>ניתן לשלוח לי הודעה</mat-slide-toggle>
+          <mat-slide-toggle [checked]="privacySettings?.showCollection" [(ngModel)]="privacySettings.showCollection">ניתן לראות את האוסף שלי</mat-slide-toggle>
+          <mat-slide-toggle [checked]="privacySettings?.showPersonalData" [(ngModel)]="privacySettings.showPersonalData">ניתן לראות מידע אישי (פופ אהוב, גיל, וכד')</mat-slide-toggle>
+          <mat-slide-toggle [checked]="privacySettings?.canSendMessage" [(ngModel)]="privacySettings.canSendMessage">ניתן לשלוח לי הודעה</mat-slide-toggle>
           <mat-divider id="header-divider"></mat-divider>
           <h6>חברים</h6>
-          <mat-slide-toggle>ניתן לראות את האוסף שלי</mat-slide-toggle>
-          <mat-slide-toggle>ניתן לראות מידע אישי (פופ אהוב, גיל, וכד')</mat-slide-toggle>
-          <mat-slide-toggle>ניתן לשלוח לי הודעה</mat-slide-toggle>
+          <mat-slide-toggle [checked]="privacySettings?.friendShowCollection" [(ngModel)]="privacySettings.friendShowCollection">ניתן לראות את האוסף שלי</mat-slide-toggle>
+          <mat-slide-toggle [checked]="privacySettings?.friendShowPersonalData" [(ngModel)]="privacySettings.friendShowPersonalData">ניתן לראות מידע אישי (פופ אהוב, גיל, וכד')</mat-slide-toggle>
+          <mat-slide-toggle [checked]="privacySettings?.friendCanSendMessage" [(ngModel)]="privacySettings.friendCanSendMessage">ניתן לשלוח לי הודעה</mat-slide-toggle>
+          <mat-divider></mat-divider>
+          <mat-card-actions>
+            <button mat-button (click)="updateSettings()">עדכן</button>
+          </mat-card-actions>
         </mat-card>
         <div class="row">
           <div class="col-sm-12 col-md-12 col-lg-12">

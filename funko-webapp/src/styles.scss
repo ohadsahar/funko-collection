@@ -43,7 +43,6 @@ body * {
   direction: rtl;
   text-align: right;
 }
-
 .fa,
 .fas {
   font-family: 'Font Awesome 5 Free' !important;
@@ -52,7 +51,7 @@ body * {
 .placeholder {
   color: black;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 15px;
 }
 
 .cdk-text-field-autofill-monitored:not(:-webkit-autofill) {
@@ -67,4 +66,23 @@ body * {
 .mat-hint {
   font-weight: bold;
   font-size: 15px;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }

@@ -6,8 +6,9 @@
   width: 80%;
   left: 48px;
   position: absolute;
-  top: 20pdx;
+  top: 20px;
   top: 59px;
+  background-color: #F4FFFD;
 }
 
 .first-card {
@@ -80,7 +81,7 @@
 }
 
 ::ng-deep .profile-section .mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
-  background-color: rgba(11, 255, 8, 0.92);
+  background-color: rgba(19, 239, 16, 0.45);
 }
 
 ::ng-deep .profile-section .mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
