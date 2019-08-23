@@ -4,6 +4,7 @@ import { RegisterInterface } from '../../../shared/interfaces/register.interface
 import { LoginService } from '../../services/login.service';
 import { MessageService } from '../../services/message.service';
 import { ShareDataService } from '../../services/share-data.service';
+import { UserProfileService } from '../../services/user-profile.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -17,7 +18,7 @@ export class UserProfileComponent implements OnInit {
   userData: RegisterInterface;
   privacySettings: PrivacySettings = new PrivacySettings(false, false, false, false, false, false);
   constructor(private loginService: LoginService, private messageService: MessageService,
-              private shareDataService: ShareDataService) { }
+    private shareDataService: ShareDataService, private userProfileService: UserProfileService) { }
 
   ngOnInit() {
     this.loginService.getUserDataByToken().subscribe(response => {
@@ -36,7 +37,8 @@ export class UserProfileComponent implements OnInit {
   }
 
   updateSettings() {
-    console.log(this.privacySettings);
+    this.userProfileService.updatePrivacySettings(this.privacySettings).subscribe(response => {
+      console.log(response);
+    });
   }
-
 }

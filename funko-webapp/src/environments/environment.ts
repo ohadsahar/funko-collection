@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  backendUrlUsers: 'http://localhost:3000/auth'
+  backendUrlUsers: 'http://localhost:3000/auth',
+  backendUrlSettings: 'http://localhost:3000/privacy-settings'
 };
 
 /*
