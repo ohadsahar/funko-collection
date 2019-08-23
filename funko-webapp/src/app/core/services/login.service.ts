@@ -19,9 +19,9 @@ export class LoginService {
     return this.http.post<{ message: RegisterInterface, success: boolean }>(`${backendUrl}/signup`, registerData);
   }
   login(loginData: LoginInterface) {
-    this.http.post<{ message: string }>(`${backendUrl}/login`, loginData).subscribe(response => {
-      if (response.message) {
-        localStorage.setItem('token', response.message);
+    this.http.post<{ message: any }>(`${backendUrl}/login`, loginData).subscribe(response => {
+      if (response) {
+        localStorage.setItem('token', response.message.accessToken);
         this.authStatusListener.next(true);
         this.dialog.closeAll();
         this.messageService.successMessage('התחברת בהצלחה, מיד תועבר');
@@ -35,6 +35,9 @@ export class LoginService {
     this.authStatusListener.next(false);
     this.dialog.closeAll();
     this.router.navigate(['']);
+  }
+  getUserDataByToken() {
+    return this.http.get<{message: any}>(`${backendUrl}/user`);
   }
   getAuthData() {
     const token = localStorage.getItem('token');

@@ -16,10 +16,6 @@ export class MainMenuComponent implements OnInit {
     this.isMobile = this.deviceService.isMobile();
   }
 
-  logout() {
-    this.loginService.logout();
-  }
-
   profile() { }
 
 

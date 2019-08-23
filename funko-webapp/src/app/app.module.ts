@@ -14,6 +14,7 @@ import { LoginSystemNavbarComponent } from './core/components/login-system/login
 import { LoginDialogComponent } from './shared/dialogs/login-dialog/login-dialog.component';
 import { RegisterDialogComponent } from './shared/dialogs/register-dialog/register-dialog.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { MainNavbarComponent } from './core/components/main-navbar/main-navbar.component';
 
 
 
@@ -25,7 +26,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
     LoginDialogComponent,
     RegisterDialogComponent,
     UserProfileComponent,
-    MainMenuComponent
+    MainMenuComponent,
+    MainNavbarComponent
   ],
   imports: [
     BrowserModule,

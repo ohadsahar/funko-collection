@@ -1,0 +1,68 @@
+.first-card {
+  max-width: 400px;
+  margin: auto;
+  margin-top: 3%;
+  border-radius: 30px 30px 30px 30px;
+}
+
+.first-card p {
+  margin-top: 10px;
+}
+
+.first-card #profile-image {
+  margin: auto;
+  width: 330px;
+  height: 300px;
+  margin-bottom: 3%;
+  display: block;
+}
+
+.profile-section {
+  background-color: #2125290a;
+  border-radius: 5%;
+  padding: 10px;
+  height: 90vh;
+}
+
+.second-card {
+  max-width: 400px;
+  margin: auto;
+  margin-top: 3%;
+  border-radius: 30px 30px 30px 30px;
+}
+
+.third-card {
+  max-width: 400px;
+  margin: auto;
+  margin-top: 3%;
+  border-radius: 30px 30px 30px 30px;
+}
+
+::ng-deep .mat-card .mat-divider-horizontal {
+  margin-top: 2%;
+  width: 80% !important;
+  position: relative !important;
+}
+
+::ng-deep #header-divider {
+  margin-top: 2%;
+  width: 100% !important;
+  position: relative !important;
+}
+
+.profile-mini-image {
+  background-size: cover;
+}
+
+.profile-mini-image img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+
+@media only screen and (max-width:800px) {
+  .profile-section {
+    height: 100vh;
+  }
+}

@@ -30,6 +30,7 @@ $funko-collection-app-theme: mat-light-theme($funko-collection-app-primary, $fun
 html,
 body {
   height: 100%;
+  overflow-x: hidden;
 }
 
 body {
