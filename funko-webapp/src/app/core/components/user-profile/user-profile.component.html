@@ -23,7 +23,7 @@
             <p>מס' פופים קיימים באוסף: {{userData?.numberOfPops}}</p>
             <mat-divider></mat-divider>
           </mat-card-content>
-          <mat-card-content *ngIf="editAble">
+          <mat-card-content *ngIf="editAble" class="edit-section">
             <form #profileForm (submit)="updateProfile(profileForm)" ngForm>
               <mat-form-field class="full-width">
                 <input matInput name="firstname" [(ngModel)]="userData.firstname" value="{{userData?.firstname}}"
@@ -104,8 +104,10 @@
               </mat-card-header>
               <mat-divider id="header-divider"></mat-divider>
               <h6>מחיקה/הקפאת החשבון</h6>
-              <mat-slide-toggle>הקפאת החשבון</mat-slide-toggle>
-              <mat-slide-toggle>מחיקת החשבון לצמיתות</mat-slide-toggle>
+              <mat-radio-group aria-label="Select an option">
+                  <mat-radio-button value="1" (click)="freezeAccountDialog()"> הקפאת החשבון</mat-radio-button>
+                  <mat-radio-button value="2" (click)="shutDownAccountDialog()"> מחיקת החשבון לצמיתות</mat-radio-button>
+                </mat-radio-group>
             </mat-card>
           </div>
         </div>

@@ -1,13 +1,18 @@
 .profile-section {
   background-color: #2125290a;
+  height: auto;
+  position: absolute;
+  width: 80%;
   border-radius: 5%;
   padding: 10px;
-  height: auto;
-  width: 80%;
   left: 48px;
-  position: absolute;
   top: 20px;
   top: 59px;
+  margin-bottom: 3%;
+}
+
+.edit-section .full-width {
+  margin-top: 3%;
 }
 
 .first-card {
@@ -43,6 +48,22 @@
   border-radius: 30px 30px 30px 30px;
 }
 
+.third-card .mat-radio-button {
+  width: 100%;
+}
+
+::ng-deep .third-card .mat-radio-label-content {
+  white-space: pre;
+}
+
+::ng-deep .third-card .mat-radio-button.mat-accent .mat-radio-inner-circle {
+  background-color: rgba(10, 148, 8, 0.78);
+}
+
+::ng-deep .third-card .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+  border-color: #cfcfcf;
+}
+
 ::ng-deep .mat-card .mat-divider-horizontal {
   margin-top: 2%;
   width: 80% !important;
@@ -75,12 +96,12 @@
 }
 
 ::ng-deep .profile-section .mat-slide-toggle-bar {
-  background-color: rgba(255, 44, 83, 0.75);
+  background-color: rgb(255, 3, 3);
   margin-left: 2%;
 }
 
 ::ng-deep .profile-section .mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
-  background-color: rgba(19, 239, 16, 0.45);
+  background-color: rgba(10, 148, 8, 0.78);
 }
 
 ::ng-deep .profile-section .mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
@@ -92,5 +113,7 @@
     background-color: #2125290a;
     border-radius: 5%;
     padding: 10px;
+    margin-top: 30%;
   }
+
 }

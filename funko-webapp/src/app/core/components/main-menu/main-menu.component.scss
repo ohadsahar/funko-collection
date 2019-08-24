@@ -25,3 +25,9 @@
   padding: 10px;
   display: block;
 }
+
+@media only screen and (max-width:800px) {
+  .login-navbar {
+    margin-top: 0%;
+  }
+}

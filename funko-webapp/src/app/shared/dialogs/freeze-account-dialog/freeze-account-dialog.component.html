@@ -1,0 +1,16 @@
+<h2 mat-dialog-title>הקפאת החשבון <i class="fas fa-icicles"></i></h2>
+<mat-dialog-content class="mat-typography">
+  <h3>מה קורה לחשבונך לאחר ההקפאה <i class="fas fa-question"></i></h3>
+  <p>כל החשבון שלך נשאר כפי שהוא, במידה ותחליט לשחזר את חשבונך תוכל לבצע זאת בדרך הבאה:</p>
+  <ul>
+    <li>מסך הבית -> הפעלת חשבון.</li>
+  </ul>
+
+  <h3>אבטחת מידע <i class="fas fa-shield-alt"></i></h3>
+  <p>המידע שהשארת באתרנו, נשאר מאובטח, במידה ונצטרך להשתמש במידע זה עקב סיבות מסוימות, נעדכן אותך לפרטי המייל שהשארת.
+  </p>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>ביטול <i class="far fa-window-close"></i> </button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>הקפא אותי <i class="fas fa-igloo"></i> </button>
+</mat-dialog-actions>

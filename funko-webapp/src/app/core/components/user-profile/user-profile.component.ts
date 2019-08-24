@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material';
+import { FreezeAccountDialogComponent } from '../../../shared/dialogs/freeze-account-dialog/freeze-account-dialog.component';
+import { ShutdownAccountDialogComponent } from '../../../shared/dialogs/shutdown-account-dialog/shutdown-account-dialog.component';
 import { PrivacySettings } from '../../../shared/interfaces/privacy-settings.interface';
 import { RegisterInterface } from '../../../shared/interfaces/register.interface';
 import { LoginService } from '../../services/login.service';
 import { MessageService } from '../../services/message.service';
 import { ShareDataService } from '../../services/share-data.service';
-import { UserProfileSettingService } from '../../services/user-profile-settings.service';
-import { NgForm } from '@angular/forms';
 import { UserProfileDataService } from '../../services/user-profile-data.service';
+import { UserProfileSettingService } from '../../services/user-profile-settings.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -17,14 +19,17 @@ export class UserProfileComponent implements OnInit {
   email: string;
   favoritePop: string;
   age: number;
+  freezeAccount: boolean;
+  shutdownAccount: boolean;
   userData: RegisterInterface;
   backupUserData: RegisterInterface;
   editAble: boolean;
   privacySettings: PrivacySettings = new PrivacySettings(null, false, false, false, false, false, false);
   constructor(private loginService: LoginService, private messageService: MessageService,
     private shareDataService: ShareDataService, private userProfileSettingService: UserProfileSettingService,
-    private userProfileDataService: UserProfileDataService) {
+    private userProfileDataService: UserProfileDataService, private dialog: MatDialog) {
     this.editAble = false;
+
   }
 
   ngOnInit() {
@@ -66,6 +71,22 @@ export class UserProfileComponent implements OnInit {
       this.messageService.successMessage('הגדרות עודכנו בהצלחה');
     }, (error) => {
       this.messageService.failedMessage(JSON.stringify(error));
+    });
+  }
+  freezeAccountDialog() {
+    const dialog = this.dialog.open(FreezeAccountDialogComponent);
+    dialog.afterClosed().subscribe(response => {
+      if (response === undefined || response === false) {
+        this.freezeAccount = false;
+      }
+    });
+  }
+  shutDownAccountDialog() {
+    const dialog = this.dialog.open(ShutdownAccountDialogComponent);
+    dialog.afterClosed().subscribe(response => {
+      if (response === undefined || response === false) {
+        this.shutdownAccount = true;
+      }
     });
   }
 }
