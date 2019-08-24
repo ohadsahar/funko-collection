@@ -20,7 +20,6 @@ export class PrivacySettingsService {
         await this.privacyRepository.update({ id }, privacySettingDto);
         return await this.privacyRepository.findOne({ id });
     }
-
     async createPrivacy(privacySettingDto: PrivacySettingDto, user: AuthEntity) {
         const userSettings = new PrivacySettingEntity();
         userSettings.showCollection = privacySettingDto.showCollection;
@@ -29,9 +28,8 @@ export class PrivacySettingsService {
         userSettings.friendShowCollection = privacySettingDto.friendShowCollection;
         userSettings.friendShowPersonalData = privacySettingDto.friendShowPersonalData;
         userSettings.friendCanSendMessage = privacySettingDto.friendCanSendMessage;
-        userSettings.user = user;
+        userSettings.userId = user.id;
         await this.privacyRepository.save(userSettings);
-        delete userSettings.user;
         return userSettings;
     }
 }

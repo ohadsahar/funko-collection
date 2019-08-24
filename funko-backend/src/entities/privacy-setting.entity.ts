@@ -1,5 +1,5 @@
 import { AuthEntity } from 'src/entities/auth.entity';
-import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, Unique } from 'typeorm';
+import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, Unique, ManyToMany } from 'typeorm';
 
 @Entity()
 @Unique(['userId'])
@@ -28,9 +28,6 @@ export class PrivacySettingEntity {
     @Column()
     friendCanSendMessage: boolean;
 
-    @ManyToOne(type => AuthEntity, user => user.settings, { eager: false })
-    user: AuthEntity;
-
     @Column()
-    userId: number;
+    userId: string;
 }

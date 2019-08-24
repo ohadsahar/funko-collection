@@ -55,10 +55,7 @@ export class RegisterDialogComponent implements OnInit {
       } else {
         const loginData = { email: this.userData.email.toLowerCase(), password: this.userData.password };
         this.loginService.login(loginData);
-        this.userProfileService.createPrivacySettings(this.privacySettings).subscribe(() => {
-          this.messageService.successMessage('התחברת בהצלחה, מיד תועבר');
-        });
-
+        this.messageService.successMessage('התחברת בהצלחה, מיד תועבר');
       }
     }, (error) => {
       this.messageService.failedMessage(error);

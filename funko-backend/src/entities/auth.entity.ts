@@ -1,4 +1,4 @@
-import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, Unique } from 'typeorm';
+import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, Unique, ManyToMany } from 'typeorm';
 import { PrivacySettingEntity } from './privacy-setting.entity';
 @Entity()
 @Unique(['email'])
@@ -32,7 +32,4 @@ export class AuthEntity {
 
     @Column()
     numberOfPops: number;
-
-    @OneToMany(type => PrivacySettingEntity, privacySetting => privacySetting.user, { eager: true })
-    settings: PrivacySettingEntity;
 }

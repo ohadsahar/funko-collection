@@ -18,11 +18,14 @@ export class UserProfileComponent implements OnInit {
   userData: RegisterInterface;
   privacySettings: PrivacySettings = new PrivacySettings(null, false, false, false, false, false, false);
   constructor(private loginService: LoginService, private messageService: MessageService,
-              private shareDataService: ShareDataService, private userProfileService: UserProfileService) { }
+    private shareDataService: ShareDataService, private userProfileService: UserProfileService) { }
 
   ngOnInit() {
     this.loginService.getUserDataByToken().subscribe(response => {
       this.userData = response.message;
+      this.userProfileService.createPrivacySettings(this.privacySettings).subscribe(() => {
+        this.messageService.successMessage('התחברת בהצלחה, מיד תועבר');
+      });
       this.userProfileService.getPrivacySettings().subscribe(data => {
         this.privacySettings = data.message;
       });
@@ -30,13 +33,12 @@ export class UserProfileComponent implements OnInit {
     }, (error) => {
       this.messageService.failedMessage(error);
     });
-
-    this.userProfileService.createPrivacySettings(this.privacySettings).subscribe(response => {
-    });
   }
   updateSettings() {
     this.userProfileService.updatePrivacySettings(this.privacySettings).subscribe(response => {
       this.privacySettings = response.message;
+    }, (error) => {
+      this.messageService.failedMessage(JSON.stringify(error));
     });
   }
 }

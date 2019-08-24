@@ -19,7 +19,6 @@ export class PrivacySettingsController {
             return { message: error, success: false };
         }
     }
-
     @Get('/get-privacy-settings')
     async getPrivacySettings(@GetUser() user: AuthEntity) {
         try {
