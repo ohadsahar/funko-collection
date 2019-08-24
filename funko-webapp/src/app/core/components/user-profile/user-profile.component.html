@@ -3,12 +3,12 @@
     <div class="row">
       <div class="col-sm-12 col md-6 col-lg-6">
         <mat-card class="first-card">
-          <img src="../../../../assets/collection-pop.jpg" id="profile-image" class="img-thumbnail">
+          <img src="../../../../assets/collection-pop.jpeg" id="profile-image" class="img-thumbnail">
           <mat-card-header>
             <div mat-card-avatar class="profile-mini-image"><img src="../../../../assets/deadpool-collection.jpeg">
             </div>
             <mat-card-title>הפרופיל שלי</mat-card-title>
-            <mat-card-subtitle>אוסף פופים מאז 2018</mat-card-subtitle>
+            <mat-card-subtitle *ngIf="!editAble">אוסף פופים מאז {{userData?.yearOfStartCollection}}</mat-card-subtitle>
           </mat-card-header>
           <mat-divider id="header-divider"></mat-divider>
           <mat-card-content *ngIf="!editAble">
@@ -26,6 +26,11 @@
           <mat-card-content *ngIf="editAble" class="edit-section">
             <form #profileForm (submit)="updateProfile(profileForm)" ngForm>
               <mat-form-field class="full-width">
+                <input matInput name="yearOfStartCollection" [(ngModel)]="userData.yearOfStartCollection"
+                  value="{{userData?.yearOfStartCollection}}" required>
+                <mat-placeholder class="placeholder">אוסף פופים מאז</mat-placeholder>
+              </mat-form-field>
+              <mat-form-field class="full-width">
                 <input matInput name="firstname" [(ngModel)]="userData.firstname" value="{{userData?.firstname}}"
                   required>
                 <mat-placeholder class="placeholder">שם פרטי</mat-placeholder>
@@ -36,7 +41,7 @@
               </mat-form-field>
               <mat-divider></mat-divider>
               <mat-form-field class="full-width">
-                <input matInput name="email" [(ngModel)]="userData.email" value="{{userData?.email}}" required>
+                <input matInput name="email" [(ngModel)]="userData.email" value="{{userData?.email}}" required disabled>
                 <mat-placeholder class="placeholder">איימיל</mat-placeholder>
               </mat-form-field>
               <mat-divider></mat-divider>
@@ -105,9 +110,9 @@
               <mat-divider id="header-divider"></mat-divider>
               <h6>מחיקה/הקפאת החשבון</h6>
               <mat-radio-group aria-label="Select an option">
-                  <mat-radio-button value="1" (click)="freezeAccountDialog()"> הקפאת החשבון</mat-radio-button>
-                  <mat-radio-button value="2" (click)="shutDownAccountDialog()"> מחיקת החשבון לצמיתות</mat-radio-button>
-                </mat-radio-group>
+                <mat-radio-button value="1" (click)="freezeAccountDialog()"> הקפאת החשבון</mat-radio-button>
+                <mat-radio-button value="2" (click)="shutDownAccountDialog()"> מחיקת החשבון לצמיתות</mat-radio-button>
+              </mat-radio-group>
             </mat-card>
           </div>
         </div>

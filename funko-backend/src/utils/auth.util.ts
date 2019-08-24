@@ -17,6 +17,7 @@ export async function createRegisterObject(user: AuthEntity, registerData: Regis
     user.numberOfPops = registerData.numberOfPops;
     user.age = registerData.age;
     user.favoritePop = registerData.favoritePop;
+    user.yearOfStartCollection = registerData.yearOfStartCollection;
     user.salt = salt;
     return user;
 }

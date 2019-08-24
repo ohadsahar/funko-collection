@@ -2,14 +2,14 @@
   <h2 mat-dialog-title>הרשמה</h2>
   <mat-dialog-content class="mat-typography">
     <mat-horizontal-stepper linear #stepper>
-      <mat-step [stepControl]="fourFormGroup" errorMessage="תמונות">
+      <!-- <mat-step [stepControl]="fourFormGroup" errorMessage="תמונות">
         <form [formGroup]="fourFormGroup" enctype="multipart/form-data">
           <ng-template matStepLabel>תמונת פרופיל</ng-template>
           <button mat-raised-button color="acceny" (click)="filePicker.click()" id="addimage">Add image</button>
           <input type="file" #filePicker (change)="onImagePicked($event)" style="visibility: hidden">
           <button type="button" (click)="UploadImage()" mat-raised-button color="primary">Upload the image</button>
         </form>
-      </mat-step>
+      </mat-step> -->
       <mat-step [stepControl]="firstFormGroup" errorMessage="מידע אישי חייב למלא">
         <form [formGroup]="firstFormGroup">
           <ng-template matStepLabel>מידע אישי</ng-template>
@@ -70,6 +70,11 @@
             <input matInput type="text" formControlName="numberOfPops" autocomplete="numberOfPops" required>
             <mat-placeholder class="placeholder">כמות הפופים שלך</mat-placeholder>
             <mat-error>חובה להכניס את כמות הפופים שלך</mat-error>
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <input matInput type="text" formControlName="yearOfStartCollection" autocomplete="yearOfStartCollection" required>
+            <mat-placeholder class="placeholder">שנת תחילת האוסף</mat-placeholder>
+            <mat-error>חובה להכניס את השנה בה התחלת</mat-error>
           </mat-form-field>
           <div>
             <button mat-button matStepperPrevious>אחורה</button>

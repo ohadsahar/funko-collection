@@ -26,10 +26,10 @@ export class RegisterDialogComponent implements OnInit {
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
   fourFormGroup: FormGroup;
-  userData: RegisterInterface = new RegisterInterface('', '', '', '', 0, '', 0);
+  userData: RegisterInterface = new RegisterInterface('', '', '', '', 0, '', 0, '');
   privacySettings: PrivacySettings = new PrivacySettings(null, false, false, false, false, false, false);
   constructor(private loginService: LoginService, private messageService: MessageService,
-              private formBuilder: FormBuilder, private userProfileSettingService: UserProfileSettingService) { }
+    private formBuilder: FormBuilder, private userProfileSettingService: UserProfileSettingService) { }
 
   ngOnInit() {
     this.onLoadComponent();
@@ -46,7 +46,8 @@ export class RegisterDialogComponent implements OnInit {
     });
     this.thirdFormGroup = this.formBuilder.group({
       favoritePop: ['', Validators.required],
-      numberOfPops: ['', Validators.required]
+      numberOfPops: ['', Validators.required],
+      yearOfStartCollection: ['', Validators.required]
     });
     this.fourFormGroup = this.formBuilder.group({
       image: ['', Validators.required],
@@ -74,6 +75,7 @@ export class RegisterDialogComponent implements OnInit {
     this.userData.age = this.secondFormGroup.value.age;
     this.userData.favoritePop = this.thirdFormGroup.value.favoritePop;
     this.userData.numberOfPops = this.thirdFormGroup.value.numberOfPops;
+    this.userData.yearOfStartCollection = this.thirdFormGroup.value.yearOfStartCollection;
   }
   onImagePicked(event: Event) {
     const file = (event.target as HTMLInputElement).files[0];

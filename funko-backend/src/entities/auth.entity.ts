@@ -32,4 +32,7 @@ export class AuthEntity {
 
     @Column()
     numberOfPops: number;
+
+    @Column()
+    yearOfStartCollection: string;
 }

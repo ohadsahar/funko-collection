@@ -7,4 +7,5 @@ export class RegisterDto {
     public age: number;
     public favoritePop: string;
     public numberOfPops: number;
+    public yearOfStartCollection: string;
 }
