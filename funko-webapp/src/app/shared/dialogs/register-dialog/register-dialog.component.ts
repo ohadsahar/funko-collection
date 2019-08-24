@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RegisterInterface } from '../../interfaces/register.interface';
 import { LoginService } from './../../../core/services/login.service';
 import { MessageService } from './../../../core/services/message.service';
-import { UserProfileService } from 'src/app/core/services/user-profile.service';
+import { UserProfileSettingService } from 'src/app/core/services/user-profile-settings.service';
 import { PrivacySettings } from '../../interfaces/privacy-settings.interface';
 @Component({
   selector: 'app-register-dialog',
@@ -20,18 +20,20 @@ import { PrivacySettings } from '../../interfaces/privacy-settings.interface';
 export class RegisterDialogComponent implements OnInit {
 
   alreadyExists: string;
+  imagePreview: string;
+  filesToUpload: Array<File> = [];
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
+  fourFormGroup: FormGroup;
   userData: RegisterInterface = new RegisterInterface('', '', '', '', 0, '', 0);
   privacySettings: PrivacySettings = new PrivacySettings(null, false, false, false, false, false, false);
   constructor(private loginService: LoginService, private messageService: MessageService,
-    private formBuilder: FormBuilder, private userProfileService: UserProfileService) { }
+              private formBuilder: FormBuilder, private userProfileSettingService: UserProfileSettingService) { }
 
   ngOnInit() {
     this.onLoadComponent();
   }
-
   onLoadComponent() {
     this.firstFormGroup = this.formBuilder.group({
       email: ['', Validators.required],
@@ -45,6 +47,9 @@ export class RegisterDialogComponent implements OnInit {
     this.thirdFormGroup = this.formBuilder.group({
       favoritePop: ['', Validators.required],
       numberOfPops: ['', Validators.required]
+    });
+    this.fourFormGroup = this.formBuilder.group({
+      image: ['', Validators.required],
     });
   }
   register() {
@@ -70,4 +75,26 @@ export class RegisterDialogComponent implements OnInit {
     this.userData.favoritePop = this.thirdFormGroup.value.favoritePop;
     this.userData.numberOfPops = this.thirdFormGroup.value.numberOfPops;
   }
+  onImagePicked(event: Event) {
+    const file = (event.target as HTMLInputElement).files[0];
+    this.fourFormGroup.patchValue({ image: file });
+    this.fourFormGroup.get('image').updateValueAndValidity();
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.imagePreview = reader.result as string;
+    };
+    this.filesToUpload.push(this.fourFormGroup.value.image);
+    reader.readAsDataURL(file);
+  }
+  UploadImage() {
+    console.log(this.filesToUpload[0]);
+    const imagesData = new FormData();
+    imagesData.append('images[]', this.filesToUpload[0], this.filesToUpload[0]['name']);
+    console.log(imagesData);
+    // this.interviewService.NewImage(this.imageformGroup.value.image, this.filesToUpload);
+
+  }
+
+
+
 }

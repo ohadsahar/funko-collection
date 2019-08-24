@@ -4,7 +4,9 @@ import { RegisterInterface } from '../../../shared/interfaces/register.interface
 import { LoginService } from '../../services/login.service';
 import { MessageService } from '../../services/message.service';
 import { ShareDataService } from '../../services/share-data.service';
-import { UserProfileService } from '../../services/user-profile.service';
+import { UserProfileSettingService } from '../../services/user-profile-settings.service';
+import { NgForm } from '@angular/forms';
+import { UserProfileDataService } from '../../services/user-profile-data.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -16,9 +18,14 @@ export class UserProfileComponent implements OnInit {
   favoritePop: string;
   age: number;
   userData: RegisterInterface;
+  backupUserData: RegisterInterface;
+  editAble: boolean;
   privacySettings: PrivacySettings = new PrivacySettings(null, false, false, false, false, false, false);
   constructor(private loginService: LoginService, private messageService: MessageService,
-              private shareDataService: ShareDataService, private userProfileService: UserProfileService) { }
+    private shareDataService: ShareDataService, private userProfileSettingService: UserProfileSettingService,
+    private userProfileDataService: UserProfileDataService) {
+    this.editAble = false;
+  }
 
   ngOnInit() {
     this.onLoadComponent();
@@ -26,10 +33,10 @@ export class UserProfileComponent implements OnInit {
   onLoadComponent() {
     this.loginService.getUserDataByToken().subscribe(response => {
       this.userData = response.message;
-      this.userProfileService.createPrivacySettings(this.privacySettings).subscribe(() => {
+      this.userProfileSettingService.createPrivacySettings(this.privacySettings).subscribe(() => {
         this.messageService.successMessage('התחברת בהצלחה, מיד תועבר');
       });
-      this.userProfileService.getPrivacySettings().subscribe(data => {
+      this.userProfileSettingService.getPrivacySettings().subscribe(data => {
         this.privacySettings = data.message;
       });
       this.shareDataService.changeUser(this.userData);
@@ -37,8 +44,24 @@ export class UserProfileComponent implements OnInit {
       this.messageService.failedMessage(error);
     });
   }
+  updateProfile() {
+    this.userProfileDataService.updateUserData(this.userData).subscribe(() => {
+    }, (error) => {
+      this.messageService.failedMessage(JSON.stringify(error));
+    });
+  }
+  beforeEdit() {
+    this.backupUserData = Object.assign({}, this.userData);
+  }
+  cancelEdit() {
+    this.userData.email = this.backupUserData.email;
+    this.userData.favoritePop = this.backupUserData.favoritePop;
+    this.userData.firstname = this.backupUserData.firstname;
+    this.userData.lastname = this.backupUserData.lastname;
+    this.userData.numberOfPops = this.backupUserData.numberOfPops;
+  }
   updateSettings() {
-    this.userProfileService.updatePrivacySettings(this.privacySettings).subscribe(response => {
+    this.userProfileSettingService.updatePrivacySettings(this.privacySettings).subscribe(response => {
       this.privacySettings = response.message;
       this.messageService.successMessage('הגדרות עודכנו בהצלחה');
     }, (error) => {

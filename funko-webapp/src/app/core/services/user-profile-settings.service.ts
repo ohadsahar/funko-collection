@@ -1,11 +1,11 @@
-import { Injectable } from "@angular/core";
-import { PrivacySettings } from 'src/app/shared/interfaces/privacy-settings.interface';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { PrivacySettings } from 'src/app/shared/interfaces/privacy-settings.interface';
 import { environment } from '../../../environments/environment';
 
 const backendUrl = environment.backendUrlSettings;
 @Injectable({ providedIn: 'root' })
-export class UserProfileService {
+export class UserProfileSettingService {
 
   constructor(private http: HttpClient) { }
 
@@ -18,4 +18,5 @@ export class UserProfileService {
   getPrivacySettings() {
     return this.http.get<{message: PrivacySettings}>(`${backendUrl}/get-privacy-settings`);
   }
+
 }

@@ -2,6 +2,14 @@
   <h2 mat-dialog-title>הרשמה</h2>
   <mat-dialog-content class="mat-typography">
     <mat-horizontal-stepper linear #stepper>
+      <mat-step [stepControl]="fourFormGroup" errorMessage="תמונות">
+        <form [formGroup]="fourFormGroup" enctype="multipart/form-data">
+          <ng-template matStepLabel>תמונת פרופיל</ng-template>
+          <button mat-raised-button color="acceny" (click)="filePicker.click()" id="addimage">Add image</button>
+          <input type="file" #filePicker (change)="onImagePicked($event)" style="visibility: hidden">
+          <button type="button" (click)="UploadImage()" mat-raised-button color="primary">Upload the image</button>
+        </form>
+      </mat-step>
       <mat-step [stepControl]="firstFormGroup" errorMessage="מידע אישי חייב למלא">
         <form [formGroup]="firstFormGroup">
           <ng-template matStepLabel>מידע אישי</ng-template>
@@ -12,17 +20,17 @@
             <mat-error>חובה להכניס מייל</mat-error>
           </mat-form-field>
           <mat-form-field class="full-width">
-              <input matInput type="text" formControlName="firstname" autocomplete="firstname" required>
-              <mat-placeholder class="placeholder">שם פרטי</mat-placeholder>
-              <mat-hint>לדוגמא: תום</mat-hint>
-              <mat-error>חובה להכניס שם פרטי</mat-error>
-            </mat-form-field>
-            <mat-form-field class="full-width">
-                <input matInput type="text" formControlName="lastname" autocomplete="lastname" required>
-                <mat-placeholder class="placeholder">שם משפחה</mat-placeholder>
-                <mat-hint>לדוגמא: הולנד</mat-hint>
-                <mat-error>חובה להכניס שם משפחה</mat-error>
-              </mat-form-field>
+            <input matInput type="text" formControlName="firstname" autocomplete="firstname" required>
+            <mat-placeholder class="placeholder">שם פרטי</mat-placeholder>
+            <mat-hint>לדוגמא: תום</mat-hint>
+            <mat-error>חובה להכניס שם פרטי</mat-error>
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <input matInput type="text" formControlName="lastname" autocomplete="lastname" required>
+            <mat-placeholder class="placeholder">שם משפחה</mat-placeholder>
+            <mat-hint>לדוגמא: הולנד</mat-hint>
+            <mat-error>חובה להכניס שם משפחה</mat-error>
+          </mat-form-field>
           <mat-divider></mat-divider>
           <div>
             <button mat-button matStepperNext>הבא</button>
@@ -70,7 +78,7 @@
         </form>
       </mat-step>
       <mat-step>
-          <ng-template matStepLabel>סיימת</ng-template>
+        <ng-template matStepLabel>סיימת</ng-template>
         <div>
           <button mat-button matStepperPrevious>אחורה</button>
           <button mat-button (click)="register()"> סיימתי</button>

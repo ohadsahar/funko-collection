@@ -5,9 +5,10 @@ import { AppService } from './app.service';
 import { AuthModule } from './components/auth/module/auth.module';
 import { TypeOrmConfig } from './config/typeorm-config';
 import { PrivacySettingsModule } from './components/privacy/module/privacy-settings.module';
+import { UserDataModule } from './components/user-data/module/user-data.module';
 
 @Module({
-  imports: [PrivacySettingsModule, AuthModule, TypeOrmModule.forRoot(TypeOrmConfig)],
+  imports: [PrivacySettingsModule, AuthModule, UserDataModule, TypeOrmModule.forRoot(TypeOrmConfig), UserDataModule],
   controllers: [AppController],
   providers: [AppService],
 })
