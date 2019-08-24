@@ -13,6 +13,9 @@ export class UserProfileService {
     return this.http.post<{message: PrivacySettings}>(`${backendUrl}/create-privacy-settings`, privacySettingData);
   }
   updatePrivacySettings(privacySettingsData: PrivacySettings) {
-    return this.http.put<{ message: PrivacySettings }>(`${backendUrl}/user-setting`, privacySettingsData);
+    return this.http.put<{ message: PrivacySettings }>(`${backendUrl}/update-privacy-settings`, privacySettingsData);
+  }
+  getPrivacySettings() {
+    return this.http.get<{message: PrivacySettings}>(`${backendUrl}/get-privacy-settings`);
   }
 }

@@ -1,8 +1,9 @@
 export class PrivacySettingDto {
-    showCollection: boolean;
-    showPersonlData: boolean;
-    canSendMessage: boolean;
-    friendShowCollection: boolean;
-    friendShowPersonalData: boolean;
-    friendCanSendMessage: boolean;
+    public id: string;
+    public showCollection: boolean;
+    public showPersonalData: boolean;
+    public canSendMessage: boolean;
+    public friendShowCollection: boolean;
+    public friendShowPersonalData: boolean;
+    public friendCanSendMessage: boolean;
 }

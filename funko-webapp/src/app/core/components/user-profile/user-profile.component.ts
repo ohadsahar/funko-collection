@@ -16,29 +16,27 @@ export class UserProfileComponent implements OnInit {
   favoritePop: string;
   age: number;
   userData: RegisterInterface;
-  privacySettings: PrivacySettings = new PrivacySettings(false, false, false, false, false, false);
+  privacySettings: PrivacySettings = new PrivacySettings(null, false, false, false, false, false, false);
   constructor(private loginService: LoginService, private messageService: MessageService,
-    private shareDataService: ShareDataService, private userProfileService: UserProfileService) { }
+              private shareDataService: ShareDataService, private userProfileService: UserProfileService) { }
 
   ngOnInit() {
     this.loginService.getUserDataByToken().subscribe(response => {
       this.userData = response.message;
-      this.privacySettings.showCollection = true;
-      this.privacySettings.showPersonalData = true;
-      this.privacySettings.canSendMessage = false;
-      this.privacySettings.friendShowCollection = false;
-      this.privacySettings.friendShowPersonalData = true;
-      this.privacySettings.friendCanSendMessage = true;
+      this.userProfileService.getPrivacySettings().subscribe(data => {
+        this.privacySettings = data.message;
+      });
       this.shareDataService.changeUser(this.userData);
-
     }, (error) => {
       this.messageService.failedMessage(error);
     });
-  }
 
+    this.userProfileService.createPrivacySettings(this.privacySettings).subscribe(response => {
+    });
+  }
   updateSettings() {
     this.userProfileService.updatePrivacySettings(this.privacySettings).subscribe(response => {
-      console.log(response);
+      this.privacySettings = response.message;
     });
   }
 }

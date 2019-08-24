@@ -7,7 +7,7 @@ import { TypeOrmConfig } from './config/typeorm-config';
 import { PrivacySettingsModule } from './components/privacy/module/privacy-settings.module';
 
 @Module({
-  imports: [AuthModule, PrivacySettingsModule, TypeOrmModule.forRoot(TypeOrmConfig)],
+  imports: [PrivacySettingsModule, AuthModule, TypeOrmModule.forRoot(TypeOrmConfig)],
   controllers: [AppController],
   providers: [AppService],
 })

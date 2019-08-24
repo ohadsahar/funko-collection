@@ -1,13 +1,12 @@
-import { JwtPayload } from './../interface/jwt-payload.interface';
-import { LoginDto } from './../dto/login.dto';
-import { RegisterDto } from './../dto/register.dto';
-import { ConflictException, InternalServerErrorException, Injectable } from '@nestjs/common';
+import { ConflictException, Injectable, InternalServerErrorException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import * as bcrypt from 'bcryptjs';
+import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import * as authUtil from '../../../utils/auth.util';
 import { AuthEntity } from './../../../entities/auth.entity';
-import { InjectRepository } from '@nestjs/typeorm';
+import { LoginDto } from './../dto/login.dto';
+import { RegisterDto } from './../dto/register.dto';
+import { JwtPayload } from './../interface/jwt-payload.interface';
 
 @Injectable()
 export class AuthService {

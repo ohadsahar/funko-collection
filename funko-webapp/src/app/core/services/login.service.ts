@@ -16,7 +16,6 @@ export class LoginService {
   constructor(private http: HttpClient, private dialog: MatDialog, private router: Router, private messageService: MessageService) { }
 
   register(registerData: RegisterInterface) {
-    console.log(registerData);
     return this.http.post<{ message: RegisterInterface, success: boolean }>(`${backendUrl}/signup`, registerData);
   }
   login(loginData: LoginInterface) {

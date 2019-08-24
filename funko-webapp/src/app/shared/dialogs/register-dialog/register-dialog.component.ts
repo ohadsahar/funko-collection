@@ -24,7 +24,7 @@ export class RegisterDialogComponent implements OnInit {
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
   userData: RegisterInterface = new RegisterInterface('', '', '', '', 0, '', 0);
-  privacySetting = new PrivacySettings(false, false, false, false, false, false);
+  privacySettings: PrivacySettings = new PrivacySettings(null, false, false, false, false, false, false);
   constructor(private loginService: LoginService, private messageService: MessageService,
     private formBuilder: FormBuilder, private userProfileService: UserProfileService) { }
 
@@ -55,10 +55,10 @@ export class RegisterDialogComponent implements OnInit {
       } else {
         const loginData = { email: this.userData.email.toLowerCase(), password: this.userData.password };
         this.loginService.login(loginData);
-        this.userProfileService.createPrivacySettings(this.privacySetting).subscribe(response => {
-          console.log(response);
+        this.userProfileService.createPrivacySettings(this.privacySettings).subscribe(() => {
           this.messageService.successMessage('התחברת בהצלחה, מיד תועבר');
         });
+
       }
     }, (error) => {
       this.messageService.failedMessage(error);
