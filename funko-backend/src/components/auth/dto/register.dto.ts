@@ -9,4 +9,5 @@ export class RegisterDto {
     public numberOfPops: number;
     public yearOfStartCollection: string;
     public profileImage: string;
+    public miniImage: string;
 }

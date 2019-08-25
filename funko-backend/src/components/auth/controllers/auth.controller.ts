@@ -5,15 +5,23 @@ import { LoginDto } from '../dto/login.dto';
 import { AuthGuard } from '@nestjs/passport';
 import { GetUser } from '../get-user.decorator';
 import { AuthEntity } from '../../../entities/auth.entity';
-import { FilesInterceptor } from '@nestjs/platform-express';
+import { FilesInterceptor, FileFieldsInterceptor } from '@nestjs/platform-express';
 
 @Controller('auth')
 export class AuthController {
 
     constructor(private authService: AuthService) { }
     @Post('/signup')
-    async signUp(@Body() registerData: RegisterDto) {
+    @UseInterceptors(FileFieldsInterceptor([
+        { name: 'image', maxCount: 1 },
+        { name: 'miniImage', maxCount: 1 },
+      ]))
+    async signUp(@Body() registerData: RegisterDto, @UploadedFiles() files) {
         try {
+            const profileImage = `http://localhost:3000/auth/${files.image[0].filename}`;
+            const miniProfileImage = `http://localhost:3000/auth/${files.miniImage[0].filename}`;
+            registerData.profileImage = profileImage;
+            registerData.miniImage = miniProfileImage;
             const resultOfCreate = await this.authService.register(registerData);
             return { message: resultOfCreate, success: true };
         } catch (error) {
@@ -39,20 +47,8 @@ export class AuthController {
         }
     }
 
-    @Put(':id')
-    @UseInterceptors(FilesInterceptor('image'))
-    async updateProfileImage(@UploadedFiles() file, @Param('id') id: string) {
-        const imageToSave = `http://localhost:3000/auth/${file[0].filename}`;
-        try {
-            const resultOfUploaded = await this.authService.updateProfileImage(id, imageToSave);
-            return { message: resultOfUploaded, success: true };
-        } catch (error) {
-            return { message: error, success: false };
-        }
-    }
-
     @Get(':imgpath')
     seeUploadedFile(@Param('imgpath') image, @Res() res) {
-        return res.sendFile(image, {root: 'upload'});
+        return res.sendFile(image, { root: 'upload' });
     }
 }

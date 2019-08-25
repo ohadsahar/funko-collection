@@ -38,4 +38,7 @@ export class AuthEntity {
 
     @Column()
     profileImage: string;
+
+    @Column()
+    miniImage: string;
 }

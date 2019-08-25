@@ -19,6 +19,7 @@ export async function createRegisterObject(user: AuthEntity, registerData: Regis
     user.favoritePop = registerData.favoritePop;
     user.yearOfStartCollection = registerData.yearOfStartCollection;
     user.salt = salt;
-    user.profileImage = '';
+    user.profileImage = registerData.profileImage;
+    user.miniImage = registerData.miniImage;
     return user;
 }

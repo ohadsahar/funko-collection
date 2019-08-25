@@ -15,7 +15,7 @@ export class LoginService {
   private authStatusListener = new BehaviorSubject<boolean>(false);
   constructor(private http: HttpClient, private dialog: MatDialog, private router: Router, private messageService: MessageService) { }
 
-  register(registerData: RegisterInterface) {
+  register(registerData: FormData) {
     return this.http.post<{ message: RegisterInterface, success: boolean }>(`${backendUrl}/signup`, registerData);
   }
   login(loginData: LoginInterface) {

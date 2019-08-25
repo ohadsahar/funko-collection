@@ -21,13 +21,13 @@ export class RegisterDialogComponent implements OnInit {
 
   alreadyExists: string;
   imagePreview: string;
-  filesToUpload: Array<File> = [];
+  miniImagePreview: string;
   firstFormGroup: FormGroup;
-  imageData = new FormData();
+  userDataForm = new FormData();
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
   fourFormGroup: FormGroup;
-  userData: RegisterInterface = new RegisterInterface('', '', '', '', '', 0, '', 0, '', null);
+  userData: RegisterInterface = new RegisterInterface('', '', '', '', '', 0, '', 0, '', null, null);
   privacySettings: PrivacySettings = new PrivacySettings(null, false, false, false, false, false, false);
   constructor(private loginService: LoginService, private messageService: MessageService,
     private formBuilder: FormBuilder, private userProfileSettingService: UserProfileSettingService) { }
@@ -52,38 +52,36 @@ export class RegisterDialogComponent implements OnInit {
     });
     this.fourFormGroup = this.formBuilder.group({
       image: ['', Validators.required],
+      miniImage: ['', Validators.required],
     });
   }
   register() {
     this.createRegisterObject();
-    this.loginService.register(this.userData).subscribe(response => {
+    this.loginService.register(this.userDataForm).subscribe(response => {
       if (!response.success) {
         this.alreadyExists = 'משתמש זה קיים במערכת';
       } else {
-        this.loginService.updateProfileImage(response.message.id, this.imageData).subscribe((data) => {
-          console.log(data);
-          const loginData = { email: this.userData.email.toLowerCase(), password: this.userData.password };
+          const loginData = { email: this.firstFormGroup.value.email.toLowerCase(), password: this.secondFormGroup.value.password };
           this.loginService.login(loginData);
           this.messageService.successMessage('התחברת בהצלחה, מיד תועבר');
-        });
       }
     }, (error) => {
       this.messageService.failedMessage(error);
     });
   }
   createRegisterObject() {
-    this.userData.email = this.firstFormGroup.value.email;
-    this.userData.firstname = this.firstFormGroup.value.firstname;
-    this.userData.lastname = this.firstFormGroup.value.lastname;
-    this.userData.password = this.secondFormGroup.value.password;
-    this.userData.age = this.secondFormGroup.value.age;
-    this.userData.favoritePop = this.thirdFormGroup.value.favoritePop;
-    this.userData.numberOfPops = this.thirdFormGroup.value.numberOfPops;
-    this.userData.yearOfStartCollection = this.thirdFormGroup.value.yearOfStartCollection;
-    this.userData.profileImage = null;
-    this.imageData.append('image', this.fourFormGroup.value.image);
+    this.userDataForm.append('email', this.firstFormGroup.value.email);
+    this.userDataForm.append('firstname', this.firstFormGroup.value.firstname);
+    this.userDataForm.append('lastname', this.firstFormGroup.value.lastname);
+    this.userDataForm.append('password', this.secondFormGroup.value.password);
+    this.userDataForm.append('age', this.secondFormGroup.value.age);
+    this.userDataForm.append('favoritePop', this.thirdFormGroup.value.favoritePop);
+    this.userDataForm.append('numberOfPops', this.thirdFormGroup.value.numberOfPops);
+    this.userDataForm.append('yearOfStartCollection', this.thirdFormGroup.value.yearOfStartCollection);
+    this.userDataForm.append('image', this.fourFormGroup.value.image);
+    this.userDataForm.append('miniImage', this.fourFormGroup.value.miniImage);
   }
-  onImagePicked(event: Event) {
+  onProfileImagePicked(event: Event) {
     const file = (event.target as HTMLInputElement).files[0];
     this.fourFormGroup.patchValue({ image: file });
     this.fourFormGroup.get('image').updateValueAndValidity();
@@ -91,7 +89,16 @@ export class RegisterDialogComponent implements OnInit {
     reader.onload = () => {
       this.imagePreview = reader.result as string;
     };
-    this.filesToUpload.push(this.fourFormGroup.value.image);
+    reader.readAsDataURL(file);
+  }
+  onMiniProfileImagePicked(event: Event) {
+    const file = (event.target as HTMLInputElement).files[0];
+    this.fourFormGroup.patchValue({ miniImage: file });
+    this.fourFormGroup.get('miniImage').updateValueAndValidity();
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.miniImagePreview = reader.result as string;
+    };
     reader.readAsDataURL(file);
   }
 }

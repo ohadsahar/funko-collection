@@ -2,13 +2,11 @@
   background-color: #21252933;
   height: auto;
   position: absolute;
-  width: 80%;
   border-radius: 5%;
-  padding: 10px;
-  left: 48px;
+  padding: 30px;
+  left: 20%;
   top: 20px;
-  top: 59px;
-  margin-bottom: 3%;
+  top: 10%;
 }
 
 ::ng-deep .edit-section .mat-form-field-appearance-legacy .mat-form-field-infix {
@@ -39,8 +37,8 @@
 }
 
 .second-card {
-  max-width: 400px;
   margin: auto;
+  max-width: 400px;
   border-radius: 30px 30px 30px 30px;
   margin-top: 3%;
 }
@@ -118,6 +116,19 @@
     border-radius: 5%;
     padding: 10px;
     margin-top: 30%;
+  }
+
+  .profile-section {
+    background-color: #21252933;
+    height: auto;
+    position: absolute;
+    border-radius: 5%;
+    padding: 10px;
+    left: 48px;
+    top: 20px;
+    top: 59px;
+    margin-bottom: 3%;
+    width: 80%;
   }
 
 }

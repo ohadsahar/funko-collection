@@ -42,12 +42,4 @@ export class AuthService {
             throw new Error('User not found');
         }
     }
-    async updateProfileImage(id: string, image: string) {
-        try {
-            await this.authRepository.update({ id }, { profileImage: image });
-            return await this.authRepository.findOne({ id });
-        } catch (error) {
-            throw new Error('image not uploaded');
-        }
-    }
 }
