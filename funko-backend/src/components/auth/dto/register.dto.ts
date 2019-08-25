@@ -8,4 +8,5 @@ export class RegisterDto {
     public favoritePop: string;
     public numberOfPops: number;
     public yearOfStartCollection: string;
+    public profileImage: string;
 }

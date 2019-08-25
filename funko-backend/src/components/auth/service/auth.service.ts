@@ -12,7 +12,7 @@ import { JwtPayload } from './../interface/jwt-payload.interface';
 export class AuthService {
     constructor(@InjectRepository(AuthEntity)
     private authRepository: Repository<AuthEntity>,
-                private jwtService: JwtService) { }
+        private jwtService: JwtService) { }
 
     async register(registerData: RegisterDto) {
         try {
@@ -40,6 +40,14 @@ export class AuthService {
             }
         } catch (error) {
             throw new Error('User not found');
+        }
+    }
+    async updateProfileImage(id: string, image: string) {
+        try {
+            await this.authRepository.update({ id }, { profileImage: image });
+            return await this.authRepository.findOne({ id });
+        } catch (error) {
+            throw new Error('image not uploaded');
         }
     }
 }

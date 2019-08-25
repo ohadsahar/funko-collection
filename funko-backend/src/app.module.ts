@@ -6,6 +6,7 @@ import { AuthModule } from './components/auth/module/auth.module';
 import { TypeOrmConfig } from './config/typeorm-config';
 import { PrivacySettingsModule } from './components/privacy/module/privacy-settings.module';
 import { UserDataModule } from './components/user-data/module/user-data.module';
+import { MulterModule } from '@nestjs/platform-express';
 
 @Module({
   imports: [PrivacySettingsModule, AuthModule, UserDataModule, TypeOrmModule.forRoot(TypeOrmConfig), UserDataModule],

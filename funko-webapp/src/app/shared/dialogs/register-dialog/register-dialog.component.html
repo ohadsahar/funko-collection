@@ -2,14 +2,23 @@
   <h2 mat-dialog-title>הרשמה</h2>
   <mat-dialog-content class="mat-typography">
     <mat-horizontal-stepper linear #stepper>
-      <!-- <mat-step [stepControl]="fourFormGroup" errorMessage="תמונות">
+      <mat-step [stepControl]="fourFormGroup" errorMessage="תמונות">
         <form [formGroup]="fourFormGroup" enctype="multipart/form-data">
           <ng-template matStepLabel>תמונת פרופיל</ng-template>
-          <button mat-raised-button color="acceny" (click)="filePicker.click()" id="addimage">Add image</button>
-          <input type="file" #filePicker (change)="onImagePicked($event)" style="visibility: hidden">
-          <button type="button" (click)="UploadImage()" mat-raised-button color="primary">Upload the image</button>
+          <section class="image-upload">
+            <button mat-raised-button color="acceny" (click)="filePicker.click()" id="addimage">בחר תמונה</button>
+            <img src="{{imagePreview}}" id="image-preview" *ngIf="imagePreview">
+            <input type="file" name="image" #filePicker (change)="onImagePicked($event)" style="visibility: hidden">
+            <mat-hint *ngIf="imagePreview">התמונה תוצג בגודל 300 * 300</mat-hint>
+            <!-- <button type="button" (click)="UploadImage()" mat-raised-button color="primary" *ngIf="imagePreview">Upload
+              the image</button> -->
+          </section>
+          <mat-divider></mat-divider>
+          <div>
+            <button mat-button matStepperNext *ngIf="imagePreview">הבא</button>
+          </div>
         </form>
-      </mat-step> -->
+      </mat-step>
       <mat-step [stepControl]="firstFormGroup" errorMessage="מידע אישי חייב למלא">
         <form [formGroup]="firstFormGroup">
           <ng-template matStepLabel>מידע אישי</ng-template>
@@ -33,6 +42,7 @@
           </mat-form-field>
           <mat-divider></mat-divider>
           <div>
+            <button mat-button matStepperPrevious>אחורה</button>
             <button mat-button matStepperNext>הבא</button>
           </div>
         </form>
@@ -72,7 +82,8 @@
             <mat-error>חובה להכניס את כמות הפופים שלך</mat-error>
           </mat-form-field>
           <mat-form-field class="full-width">
-            <input matInput type="text" formControlName="yearOfStartCollection" autocomplete="yearOfStartCollection" required>
+            <input matInput type="text" formControlName="yearOfStartCollection" autocomplete="yearOfStartCollection"
+              required>
             <mat-placeholder class="placeholder">שנת תחילת האוסף</mat-placeholder>
             <mat-error>חובה להכניס את השנה בה התחלת</mat-error>
           </mat-form-field>

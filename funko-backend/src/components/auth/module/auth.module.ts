@@ -1,3 +1,4 @@
+import { MulterModule } from '@nestjs/platform-express';
 import { AuthService } from './../service/auth.service';
 import { AuthController } from './../controllers/auth.controller';
 import { AuthEntity } from './../../../entities/auth.entity';
@@ -14,7 +15,8 @@ import { JwtStrategy } from '../jwt.strategy';
         secret: 'secretTop51', signOptions: {
             expiresIn: 3600,
         },
-    }), TypeOrmModule.forFeature([AuthEntity])],
+    }), TypeOrmModule.forFeature([AuthEntity]),
+    MulterModule.register({ dest: './upload' })],
     controllers: [AuthController],
     providers: [AuthService, JwtStrategy],
     exports: [JwtStrategy, PassportModule],

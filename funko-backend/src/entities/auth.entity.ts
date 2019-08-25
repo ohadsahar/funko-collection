@@ -1,5 +1,5 @@
-import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, Unique, ManyToMany } from 'typeorm';
-import { PrivacySettingEntity } from './privacy-setting.entity';
+import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, Unique } from 'typeorm';
+
 @Entity()
 @Unique(['email'])
 export class AuthEntity {
@@ -35,4 +35,7 @@ export class AuthEntity {
 
     @Column()
     yearOfStartCollection: string;
+
+    @Column()
+    profileImage: string;
 }
