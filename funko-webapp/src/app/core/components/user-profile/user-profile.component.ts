@@ -39,7 +39,6 @@ export class UserProfileComponent implements OnInit {
     this.loginService.getUserDataByToken().subscribe(response => {
       this.userData = response.message;
       this.userProfileSettingService.createPrivacySettings(this.privacySettings).subscribe(() => {
-        this.messageService.successMessage('התחברת בהצלחה, מיד תועבר');
       });
       this.userProfileSettingService.getPrivacySettings().subscribe(data => {
         this.privacySettings = data.message;
