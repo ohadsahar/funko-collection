@@ -1,11 +1,8 @@
 .profile-section {
   background-color: #21252933;
   height: auto;
-  position: absolute;
   border-radius: 5%;
   padding: 30px;
-  left: 20%;
-  top: 15%;
 }
 
 ::ng-deep .edit-section .mat-form-field-appearance-legacy .mat-form-field-infix {
@@ -116,24 +113,9 @@
     padding: 10px;
     margin-top: 30%;
   }
+}
 
-  .profile-section {
-    padding: 10px;
-    left: 48px;
-    top: 20px;
-    top: 59px;
-    margin-bottom: 3%;
-    width: 80%;
-  }
-
-  .second-card,
-  .third-card {
-    font-size: 20px;
-  }
-
-  .first-card .mat-card-content {
-    font-size: 20px;
-  }
+@media only screen and(min-width:800px) {
 
   .mat-card-header .mat-card-title {
     font-size: 30px;
@@ -142,8 +124,8 @@
   .mat-card-header .mat-card-subtitle {
     font-size: 18px;
   }
-
-  .mat-button {
-    font-size: 20px;
+  .placeholder,.mat-button,.first-card,.mat-card-content,.second-card,
+  .third-card {
+    font-size: 16px;
   }
 }

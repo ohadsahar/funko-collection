@@ -1,11 +1,11 @@
 <app-login-system-navbar *ngIf="!isLogged"></app-login-system-navbar>
 <app-login-system-content *ngIf="!isLogged"></app-login-system-content>
-<div class="row funko-options">
+<div class="row funko-options" *ngIf="isLogged">
   <div class="col-sm-12 col-md-2 col-lg-2">
-    <app-main-menu *ngIf="isLogged"></app-main-menu>
+    <app-main-menu></app-main-menu>
   </div>
   <div class="col-sm-12 col-md-10 col-lg-10">
-    <app-main-navbar *ngIf="isLogged"></app-main-navbar>
+    <app-main-navbar></app-main-navbar>
     <div class="row">
       <div class="col-sm-12 col-md-10 col-lg-10">
         <router-outlet></router-outlet>
