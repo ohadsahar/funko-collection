@@ -4,6 +4,7 @@ import { AuthEntity } from 'src/entities/auth.entity';
 import { PrivacySettingEntity } from 'src/entities/privacy-setting.entity';
 import { Repository } from 'typeorm';
 import { PrivacySettingDto } from '../dto/privacy-setting.dto';
+import * as privacySettingUtil from '../../../utils/privacy-setting.util';
 
 @Injectable()
 export class PrivacySettingsService {
@@ -22,14 +23,8 @@ export class PrivacySettingsService {
     }
     async createPrivacy(privacySettingDto: PrivacySettingDto, user: AuthEntity) {
         const userSettings = new PrivacySettingEntity();
-        userSettings.showCollection = privacySettingDto.showCollection;
-        userSettings.showPersonalData = privacySettingDto.showPersonalData;
-        userSettings.canSendMessage = privacySettingDto.canSendMessage;
-        userSettings.friendShowCollection = privacySettingDto.friendShowCollection;
-        userSettings.friendShowPersonalData = privacySettingDto.friendShowPersonalData;
-        userSettings.friendCanSendMessage = privacySettingDto.friendCanSendMessage;
-        userSettings.userId = user.id;
-        await this.privacyRepository.save(userSettings);
+        const result = privacySettingUtil.createPrivacyObject(userSettings, privacySettingDto, user);
+        await this.privacyRepository.save(result);
         return userSettings;
     }
 }

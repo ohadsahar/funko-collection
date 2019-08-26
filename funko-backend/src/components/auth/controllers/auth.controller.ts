@@ -18,11 +18,7 @@ export class AuthController {
       ]))
     async signUp(@Body() registerData: RegisterDto, @UploadedFiles() files) {
         try {
-            const profileImage = `http://localhost:3000/auth/${files.image[0].filename}`;
-            const miniProfileImage = `http://localhost:3000/auth/${files.miniImage[0].filename}`;
-            registerData.profileImage = profileImage;
-            registerData.miniImage = miniProfileImage;
-            const resultOfCreate = await this.authService.register(registerData);
+            const resultOfCreate = await this.authService.register(registerData, files);
             return { message: resultOfCreate, success: true };
         } catch (error) {
             return { message: error, success: false };
@@ -46,7 +42,6 @@ export class AuthController {
             return { message: error, success: false };
         }
     }
-
     @Get(':imgpath')
     seeUploadedFile(@Param('imgpath') image, @Res() res) {
         return res.sendFile(image, { root: 'upload' });

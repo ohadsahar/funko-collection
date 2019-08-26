@@ -1,6 +1,6 @@
 import * as bcrypt from 'bcryptjs';
-import { AuthEntity } from '../entities/auth.entity';
 import { RegisterDto } from '../components/auth/dto/register.dto';
+import { AuthEntity } from '../entities/auth.entity';
 
 export async function hashPassword(password: string, salt: string) {
     return bcrypt.hash(password, salt);

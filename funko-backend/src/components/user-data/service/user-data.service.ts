@@ -11,8 +11,6 @@ export class UserDataService {
 
     async updateUserData(userData: RegisterDto, @UploadedFiles() files) {
         const id = userData.id;
-        userData.age = Number(userData.age);
-        userData.numberOfPops = Number(userData.numberOfPops);
         if (files.profileImage || files.miniImage) {
             if (files.profileImage) {
                 const profileImage = `http://localhost:3000/auth/${files.profileImage[0].filename}`;
@@ -25,10 +23,9 @@ export class UserDataService {
         }
         await this.userDataRepository.update({ id }, {
             email: userData.email, password: userData.password, firstname: userData.firstname,
-            age: userData.age, favoritePop: userData.favoritePop, numberOfPops: userData.numberOfPops,
+            age: Number(userData.age), favoritePop: userData.favoritePop, numberOfPops: Number(userData.numberOfPops),
             yearOfStartCollection: userData.yearOfStartCollection, profileImage: userData.profileImage,
-            miniImage: userData.miniImage
-        });
+            miniImage: userData.miniImage});
         return await this.userDataRepository.findOne({ id });
     }
 }

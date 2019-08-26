@@ -1,4 +1,4 @@
-import { ConflictException, Injectable, InternalServerErrorException } from '@nestjs/common';
+import { ConflictException, Injectable, InternalServerErrorException, UploadedFiles } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -14,9 +14,11 @@ export class AuthService {
     private authRepository: Repository<AuthEntity>,
         private jwtService: JwtService) { }
 
-    async register(registerData: RegisterDto) {
+    async register(registerData: RegisterDto, @UploadedFiles() files) {
         try {
             let user = new AuthEntity();
+            registerData.profileImage = `http://localhost:3000/auth/${files.image[0].filename}`;
+            registerData.miniImage = `http://localhost:3000/auth/${files.miniImage[0].filename}`;
             user = await authUtil.createRegisterObject(user, registerData);
             user.password = await authUtil.hashPassword(registerData.password, user.salt);
             return await this.authRepository.save(user);
