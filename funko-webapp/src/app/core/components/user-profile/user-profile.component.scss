@@ -14,7 +14,7 @@
 }
 
 .first-card {
-  max-width: 400px;
+  max-width: auto;
   margin: auto;
   margin-top: 3%;
   border-radius: 30px 30px 30px 30px;
@@ -26,7 +26,7 @@
 
 .first-card #profile-image {
   margin: auto;
-  width: 330px;
+  width: auto;
   height: 300px;
   margin-bottom: 3%;
   display: block;
@@ -34,13 +34,13 @@
 
 .second-card {
   margin: auto;
-  max-width: 400px;
+  max-width: auto;
   border-radius: 30px 30px 30px 30px;
   margin-top: 3%;
 }
 
 .third-card {
-  max-width: 400px;
+  max-width: auto;
   margin: auto;
   margin-top: 3%;
   border-radius: 30px 30px 30px 30px;
@@ -131,6 +131,15 @@
     padding: 10px;
     margin-top: 30%;
   }
+
+  .placeholder,
+  .mat-button,
+  .first-card,
+  .mat-card-content,
+  .second-card,
+  .third-card {
+    font-size: 17px;
+  }
 }
 
 @media only screen and(min-width:800px) {
@@ -149,6 +158,6 @@
   .mat-card-content,
   .second-card,
   .third-card {
-    font-size: 16px;
+    font-size: 19px;
   }
 }

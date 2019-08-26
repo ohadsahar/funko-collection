@@ -76,6 +76,8 @@ export class UserProfileComponent implements OnInit {
     this.userData.firstname = this.backupUserData.firstname;
     this.userData.lastname = this.backupUserData.lastname;
     this.userData.numberOfPops = this.backupUserData.numberOfPops;
+    this.userData.yearOfStartCollection = this.backupUserData.yearOfStartCollection;
+    this.afterUpdate();
   }
   updateSettings() {
     this.userProfileSettingService.updatePrivacySettings(this.privacySettings).subscribe(response => {

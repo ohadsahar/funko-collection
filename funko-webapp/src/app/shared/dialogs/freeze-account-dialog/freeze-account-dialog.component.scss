@@ -1,9 +1,12 @@
 .mat-dialog-content {
   overflow-y: hidden;
+  font-size: 16px;
+  max-width: 450px;
 }
 
 .mat-dialog-container .mat-dialog-title,h2,h3 {
   font-family: 'Heebo', sans-serif;
+  font-size: 20px;
 }
 .mat-dialog-title {
   text-align: center;

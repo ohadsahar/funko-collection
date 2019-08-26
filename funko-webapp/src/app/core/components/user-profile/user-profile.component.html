@@ -1,7 +1,7 @@
 <div class="profile-component">
   <section class="profile-section">
     <div class="row">
-      <div class="col-sm-12 col md-6 col-lg-6">
+      <div class="col-sm-12 col-md-6 col-lg-6">
         <mat-card class="first-card">
           <img src="{{userData?.profileImage}}" id="profile-image" class="img-thumbnail">
           <mat-card-header>
@@ -24,23 +24,25 @@
             <mat-divider></mat-divider>
           </mat-card-content>
           <mat-card-content *ngIf="editAble" class="edit-section">
-              <div class="row">
-                  <div class="col-sm-12 col-md-12 col-lg-12">
-                      <button mat-raised-button color="acceny" (click)="filePicker.click()" class="image-button">בחר תמונת פרופיל</button>
-                      <img src="{{imagePreview}}" id="image-preview" *ngIf="imagePreview">
-                      <input type="file" name="image" #filePicker (change)="onProfileImagePicked($event)"
-                        style="visibility: hidden">
-                  </div>
-                </div>
-                <mat-divider *ngIf="imagePreview" id="image-divider"></mat-divider>
-                <div class="row upload-image">
-                  <div class="col-sm-12 col-md-12 col-lg-12">
-                      <button mat-raised-button color="acceny" class="image-button" (click)="filePickerMiniImage.click()">בחר תמונת מיני פרופיל</button>
-                      <img src="{{miniImagePreview}}" id="mini-image-preview" *ngIf="miniImagePreview">
-                      <input type="file" name="miniImage" #filePickerMiniImage (change)="onMiniProfileImagePicked($event)"
-                        style="visibility: hidden">
-                  </div>
-                </div>
+            <div class="row">
+              <div class="col-sm-12 col-md-12 col-lg-12">
+                <button mat-raised-button color="acceny" (click)="filePicker.click()" class="image-button">בחר תמונת
+                  פרופיל</button>
+                <img src="{{imagePreview}}" id="image-preview" *ngIf="imagePreview">
+                <input type="file" name="image" #filePicker (change)="onProfileImagePicked($event)"
+                  style="visibility: hidden">
+              </div>
+            </div>
+            <mat-divider *ngIf="imagePreview" id="image-divider"></mat-divider>
+            <div class="row upload-image">
+              <div class="col-sm-12 col-md-12 col-lg-12">
+                <button mat-raised-button color="acceny" class="image-button" (click)="filePickerMiniImage.click()">בחר
+                  תמונת מיני פרופיל</button>
+                <img src="{{miniImagePreview}}" id="mini-image-preview" *ngIf="miniImagePreview">
+                <input type="file" name="miniImage" #filePickerMiniImage (change)="onMiniProfileImagePicked($event)"
+                  style="visibility: hidden">
+              </div>
+            </div>
             <form #profileForm (submit)="updateProfile(profileForm)" ngForm>
               <mat-form-field class="full-width">
                 <input matInput name="yearOfStartCollection" [(ngModel)]="userData.yearOfStartCollection"
@@ -118,20 +120,20 @@
           </mat-card-actions>
         </mat-card>
         <div class="row">
-            <div class="col-sm-12 col-md-12 col-lg-12">
-                <mat-card class="third-card">
-                  <mat-card-header>
-                    <mat-card-title>הגדרות חשבון</mat-card-title>
-                    <mat-card-subtitle>חשוב טוב לפני נגיעה באפשרויות אלו</mat-card-subtitle>
-                  </mat-card-header>
-                  <mat-divider id="header-divider"></mat-divider>
-                  <h6>מחיקה/הקפאת החשבון</h6>
-                  <mat-radio-group aria-label="Select an option">
-                    <mat-radio-button value="1" (click)="freezeAccountDialog()"> הקפאת החשבון</mat-radio-button>
-                    <mat-radio-button value="2" (click)="shutDownAccountDialog()"> מחיקת החשבון לצמיתות</mat-radio-button>
-                  </mat-radio-group>
-                </mat-card>
-              </div>
+          <div class="col-sm-12 col-md-12 col-lg-12">
+            <mat-card class="third-card">
+              <mat-card-header>
+                <mat-card-title>הגדרות חשבון</mat-card-title>
+                <mat-card-subtitle>חשוב טוב לפני נגיעה באפשרויות אלו</mat-card-subtitle>
+              </mat-card-header>
+              <mat-divider id="header-divider"></mat-divider>
+              <h6>מחיקה/הקפאת החשבון</h6>
+              <mat-radio-group aria-label="Select an option">
+                <mat-radio-button value="1" (click)="freezeAccountDialog()"> הקפאת החשבון</mat-radio-button>
+                <mat-radio-button value="2" (click)="shutDownAccountDialog()"> מחיקת החשבון לצמיתות</mat-radio-button>
+              </mat-radio-group>
+            </mat-card>
+          </div>
         </div>
       </div>
     </div>
