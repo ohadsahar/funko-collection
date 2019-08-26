@@ -11,15 +11,11 @@ import { AuthInterceptor } from './core/components/login-system/login-system-nav
 import { LoginSystemNavbarComponent } from './core/components/login-system/login-system-navbar/login-system-navbar.component';
 import { MainMenuComponent } from './core/components/main-menu/main-menu.component';
 import { MainNavbarComponent } from './core/components/main-navbar/main-navbar.component';
-import { UserProfileComponent } from './core/components/user-profile/user-profile.component';
 import { AngularMaterialModule } from './modules/angular-material.module';
 import { FreezeAccountDialogComponent } from './shared/dialogs/freeze-account-dialog/freeze-account-dialog.component';
 import { LoginDialogComponent } from './shared/dialogs/login-dialog/login-dialog.component';
 import { RegisterDialogComponent } from './shared/dialogs/register-dialog/register-dialog.component';
 import { ShutdownAccountDialogComponent } from './shared/dialogs/shutdown-account-dialog/shutdown-account-dialog.component';
-
-
-
 
 @NgModule({
   declarations: [
@@ -28,11 +24,10 @@ import { ShutdownAccountDialogComponent } from './shared/dialogs/shutdown-accoun
     LoginSystemNavbarComponent,
     LoginDialogComponent,
     RegisterDialogComponent,
-    UserProfileComponent,
     MainMenuComponent,
     MainNavbarComponent,
     FreezeAccountDialogComponent,
-    ShutdownAccountDialogComponent
+    ShutdownAccountDialogComponent,
   ],
   imports: [
     BrowserModule,

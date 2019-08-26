@@ -1,0 +1,88 @@
+<mat-card class="first-card">
+    <img src="{{userData?.profileImage}}" id="profile-image" class="img-thumbnail">
+    <mat-card-header>
+      <div mat-card-avatar class="profile-mini-image"><img src="{{userData?.miniImage}}">
+      </div>
+      <mat-card-title>הפרופיל שלי</mat-card-title>
+      <mat-card-subtitle *ngIf="!editAble">אוסף פופים מאז {{userData?.yearOfStartCollection}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-divider id="header-divider"></mat-divider>
+    <mat-card-content *ngIf="!editAble">
+      <p>שם מלא: {{userData?.firstname}} {{userData?.lastname}}</p>
+      <mat-divider></mat-divider>
+      <p>איימיל: {{userData?.email}}</p>
+      <mat-divider></mat-divider>
+      <p>גיל: {{userData?.age}}</p>
+      <mat-divider></mat-divider>
+      <p>פופ אהוב: {{userData?.favoritePop}}</p>
+      <mat-divider></mat-divider>
+      <p>מס' פופים קיימים באוסף: {{userData?.numberOfPops}}</p>
+      <mat-divider></mat-divider>
+    </mat-card-content>
+    <mat-card-content *ngIf="editAble" class="edit-section">
+      <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+          <button mat-raised-button color="acceny" (click)="filePicker.click()" class="image-button">בחר תמונת
+            פרופיל</button>
+          <img src="{{imagePreview}}" id="image-preview" *ngIf="imagePreview">
+          <input type="file" name="image" #filePicker (change)="onProfileImagePicked($event)"
+            style="visibility: hidden">
+        </div>
+      </div>
+      <mat-divider *ngIf="imagePreview" id="image-divider"></mat-divider>
+      <div class="row upload-image">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+          <button mat-raised-button color="acceny" class="image-button" (click)="filePickerMiniImage.click()">בחר
+            תמונת מיני פרופיל</button>
+          <img src="{{miniImagePreview}}" id="mini-image-preview" *ngIf="miniImagePreview">
+          <input type="file" name="miniImage" #filePickerMiniImage (change)="onMiniProfileImagePicked($event)"
+            style="visibility: hidden">
+        </div>
+      </div>
+      <form #profileForm (submit)="updateProfile(profileForm)" ngForm>
+        <mat-form-field class="full-width">
+          <input matInput name="yearOfStartCollection" [(ngModel)]="userData.yearOfStartCollection"
+            value="{{userData?.yearOfStartCollection}}" required>
+          <mat-placeholder class="placeholder">אוסף פופים מאז</mat-placeholder>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <input matInput name="firstname" [(ngModel)]="userData.firstname" value="{{userData?.firstname}}"
+            required>
+          <mat-placeholder class="placeholder">שם פרטי</mat-placeholder>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <input matInput name="lastname" [(ngModel)]="userData.lastname" value="{{userData?.lastname}}" required>
+          <mat-placeholder class="placeholder">שם משפחה</mat-placeholder>
+        </mat-form-field>
+        <mat-divider></mat-divider>
+        <mat-form-field class="full-width">
+          <input matInput name="email" [(ngModel)]="userData.email" value="{{userData?.email}}" required disabled>
+          <mat-placeholder class="placeholder">איימיל</mat-placeholder>
+        </mat-form-field>
+        <mat-divider></mat-divider>
+        <mat-form-field class="full-width">
+          <input matInput name="age" [(ngModel)]="userData.age" value="{{userData?.age}}" required>
+          <mat-placeholder class="placeholder">גיל</mat-placeholder>
+        </mat-form-field>
+        <mat-divider></mat-divider>
+        <mat-form-field class="full-width">
+          <input matInput name="favoritePop" [(ngModel)]="userData.favoritePop" value="{{userData?.favoritePop}}"
+            required>
+          <mat-placeholder class="placeholder">פופ אהוב</mat-placeholder>
+        </mat-form-field>
+        <mat-divider></mat-divider>
+        <mat-form-field class="full-width">
+          <input matInput name="numberOfPops" [(ngModel)]="userData.numberOfPops"
+            value="{{userData?.numberOfPops}}" required>
+          <mat-placeholder class="placeholder">מס' פופים קיימים באוסף</mat-placeholder>
+        </mat-form-field>
+      </form>
+      <mat-divider></mat-divider>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button (click)="editAble = true;beforeEdit() " *ngIf="!editAble">עריכה</button>
+      <button mat-button (click)="editAble = false;updateProfile()" *ngIf="editAble">עדכון</button>
+      <button mat-button (click)="editAble = false;cancelEdit()" *ngIf="editAble">ביטול</button>
+      <button mat-button>שיתוף</button>
+    </mat-card-actions>
+  </mat-card>

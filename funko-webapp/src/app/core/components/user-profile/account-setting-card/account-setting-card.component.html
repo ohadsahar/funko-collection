@@ -1,0 +1,12 @@
+         <mat-card class="third-card">
+           <mat-card-header>
+             <mat-card-title>הגדרות חשבון</mat-card-title>
+             <mat-card-subtitle>חשוב טוב לפני נגיעה באפשרויות אלו</mat-card-subtitle>
+           </mat-card-header>
+           <mat-divider id="header-divider"></mat-divider>
+           <h6>מחיקה/הקפאת החשבון</h6>
+           <mat-radio-group aria-label="Select an option">
+             <mat-radio-button value="1" (click)="freezeAccountDialog()"> הקפאת החשבון</mat-radio-button>
+             <mat-radio-button value="2" (click)="shutDownAccountDialog()"> מחיקת החשבון לצמיתות</mat-radio-button>
+           </mat-radio-group>
+         </mat-card>

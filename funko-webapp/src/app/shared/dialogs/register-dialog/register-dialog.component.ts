@@ -37,17 +37,18 @@ export class RegisterDialogComponent implements OnInit {
   }
   onLoadComponent() {
     this.firstFormGroup = this.formBuilder.group({
-      email: ['', Validators.required],
+      email: ['', Validators.compose([Validators.required,
+      Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')])],
       firstname: ['', Validators.required],
       lastname: ['', Validators.required]
     });
     this.secondFormGroup = this.formBuilder.group({
-      password: ['', Validators.required],
-      age: ['', Validators.required]
+      password: [null, [Validators.required, Validators.minLength(8), Validators.maxLength(8)]],
+      age: [null,[ Validators.required, Validators.min(6), Validators.max(120)]]
     });
     this.thirdFormGroup = this.formBuilder.group({
       favoritePop: ['', Validators.required],
-      numberOfPops: ['', Validators.required],
+      numberOfPops: ['', [Validators.required, Validators.min(0), Validators.max(4000)]],
       yearOfStartCollection: ['', Validators.required]
     });
     this.fourFormGroup = this.formBuilder.group({
@@ -61,9 +62,9 @@ export class RegisterDialogComponent implements OnInit {
       if (!response.success) {
         this.alreadyExists = 'משתמש זה קיים במערכת';
       } else {
-          const loginData = { email: this.firstFormGroup.value.email.toLowerCase(), password: this.secondFormGroup.value.password };
-          this.loginService.login(loginData);
-          this.messageService.successMessage('התחברת בהצלחה, מיד תועבר');
+        const loginData = { email: this.firstFormGroup.value.email.toLowerCase(), password: this.secondFormGroup.value.password };
+        this.loginService.login(loginData);
+        this.messageService.successMessage('התחברת בהצלחה, מיד תועבר');
       }
     }, (error) => {
       this.messageService.failedMessage(error);

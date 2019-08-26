@@ -20,19 +20,21 @@ export class LoginService {
   }
   login(loginData: LoginInterface) {
     this.http.post<{ message: any }>(`${backendUrl}/login`, loginData).subscribe(response => {
-      if (response) {
+      if (response.message.accessToken) {
         localStorage.setItem('token', response.message.accessToken);
         this.authStatusListener.next(true);
         this.dialog.closeAll();
         this.router.navigate(['profile']);
         this.messageService.successMessage('התחברת בהצלחה, מיד תועבר');
+      } else {
+        this.messageService.failedMessage('שם המשתמש או הסיסמא אינם נכונים');
       }
     }, (error) => {
       this.messageService.failedMessage(error);
     });
   }
   updateProfileImage(id: string, image: FormData) {
-    return this.http.put<{message: any, success: boolean}>(`${backendUrl}/${id}`, image);
+    return this.http.put<{ message: any, success: boolean }>(`${backendUrl}/${id}`, image);
   }
   logout() {
     localStorage.removeItem('token');
@@ -41,7 +43,7 @@ export class LoginService {
     this.router.navigate(['']);
   }
   getUserDataByToken() {
-    return this.http.get<{message: any}>(`${backendUrl}/user`);
+    return this.http.get<{ message: any }>(`${backendUrl}/user`);
   }
   getAuthData() {
     const token = localStorage.getItem('token');

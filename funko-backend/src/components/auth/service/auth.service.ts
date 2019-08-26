@@ -39,7 +39,9 @@ export class AuthService {
                     const accessToken = await this.jwtService.sign(payload);
                     return { accessToken };
                 }
+                return { accessToken: null };
             }
+            return { accessToken: null };
         } catch (error) {
             throw new Error('User not found');
         }
