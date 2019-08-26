@@ -13,8 +13,13 @@ export class MainNavbarComponent implements OnInit {
   constructor(private loginService: LoginService, private shareDataService: ShareDataService,
               private messageService: MessageService) { }
   fullname: string;
+  currentView: string;
 
   ngOnInit() {
+    this.onLoadComponent();
+  }
+  onLoadComponent() {
+    this.currentView = 'פרופיל אישי';
     this.shareDataService.currentUser.subscribe(response => {
       if (response) {
         this.fullname = response.firstname + ' ' + response.lastname;
