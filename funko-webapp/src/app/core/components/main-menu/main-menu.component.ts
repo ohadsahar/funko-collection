@@ -1,7 +1,5 @@
-import { LoginService } from './../../services/login.service';
 import { Component, OnInit } from '@angular/core';
 import { DeviceDetectorService } from 'ngx-device-detector';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main-menu',
@@ -16,5 +14,4 @@ export class MainMenuComponent implements OnInit {
   ngOnInit() {
     this.isMobile = this.deviceService.isMobile();
   }
-
 }

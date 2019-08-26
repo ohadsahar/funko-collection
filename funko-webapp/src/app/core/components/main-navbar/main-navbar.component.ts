@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../../services/login.service';
-import { ShareDataService } from '../../services/share-data.service';
 import { MessageService } from '../../services/message.service';
+import { ShareDataService } from '../../services/share-data.service';
 
 @Component({
   selector: 'app-main-navbar',
@@ -11,7 +11,7 @@ import { MessageService } from '../../services/message.service';
 export class MainNavbarComponent implements OnInit {
 
   constructor(private loginService: LoginService, private shareDataService: ShareDataService,
-    private messageService: MessageService) { }
+              private messageService: MessageService) { }
   fullname: string;
 
   ngOnInit() {
@@ -23,7 +23,6 @@ export class MainNavbarComponent implements OnInit {
       this.messageService.failedMessage(error);
     });
   }
-
   logout() {
     this.loginService.logout();
   }

@@ -7,5 +7,4 @@ const routes: Routes = [{ path: 'profile', component: UserProfileComponent }];
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-
 export class UserRoutingProfileModule { }

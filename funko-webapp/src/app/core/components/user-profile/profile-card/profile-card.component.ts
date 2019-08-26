@@ -12,7 +12,6 @@ import { UserProfileDataService } from '../../../services/user-profile-data.serv
   styleUrls: ['../user-profile.component.scss']
 })
 export class ProfileCardComponent implements OnInit {
-
   imagePreview: string;
   miniImagePreview: string;
   userData: RegisterInterface;
