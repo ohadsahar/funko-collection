@@ -24,6 +24,23 @@
             <mat-divider></mat-divider>
           </mat-card-content>
           <mat-card-content *ngIf="editAble" class="edit-section">
+              <div class="row">
+                  <div class="col-sm-12 col-md-12 col-lg-12">
+                      <button mat-raised-button color="acceny" (click)="filePicker.click()" class="image-button">בחר תמונת פרופיל</button>
+                      <img src="{{imagePreview}}" id="image-preview" *ngIf="imagePreview">
+                      <input type="file" name="image" #filePicker (change)="onProfileImagePicked($event)"
+                        style="visibility: hidden">
+                  </div>
+                </div>
+                <mat-divider *ngIf="imagePreview" id="image-divider"></mat-divider>
+                <div class="row upload-image">
+                  <div class="col-sm-12 col-md-12 col-lg-12">
+                      <button mat-raised-button color="acceny" class="image-button" (click)="filePickerMiniImage.click()">בחר תמונת מיני פרופיל</button>
+                      <img src="{{miniImagePreview}}" id="mini-image-preview" *ngIf="miniImagePreview">
+                      <input type="file" name="miniImage" #filePickerMiniImage (change)="onMiniProfileImagePicked($event)"
+                        style="visibility: hidden">
+                  </div>
+                </div>
             <form #profileForm (submit)="updateProfile(profileForm)" ngForm>
               <mat-form-field class="full-width">
                 <input matInput name="yearOfStartCollection" [(ngModel)]="userData.yearOfStartCollection"

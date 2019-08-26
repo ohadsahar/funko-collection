@@ -8,7 +8,7 @@ const backendUrl = environment.backendUrlProfileData;
 export class UserProfileDataService {
 
   constructor(private http: HttpClient) { }
-  updateUserData(userData: RegisterInterface) {
+  updateUserData(userData: FormData) {
     return this.http.put<{ message: RegisterInterface }>(`${backendUrl}/update-user-data`, userData);
   }
 }

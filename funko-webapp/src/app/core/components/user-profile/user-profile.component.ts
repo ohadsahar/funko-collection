@@ -1,3 +1,4 @@
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { FreezeAccountDialogComponent } from '../../../shared/dialogs/freeze-account-dialog/freeze-account-dialog.component';
@@ -19,15 +20,19 @@ export class UserProfileComponent implements OnInit {
   email: string;
   favoritePop: string;
   age: number;
+  imagePreview: string;
+  miniImagePreview: string;
   freezeAccount: boolean;
   shutdownAccount: boolean;
   userData: RegisterInterface;
+  userDataForm = new FormData();
   backupUserData: RegisterInterface;
   editAble: boolean;
+  fourFormGroup: FormGroup;
   privacySettings: PrivacySettings = new PrivacySettings(null, false, false, false, false, false, false);
   constructor(private loginService: LoginService, private messageService: MessageService,
     private shareDataService: ShareDataService, private userProfileSettingService: UserProfileSettingService,
-    private userProfileDataService: UserProfileDataService, private dialog: MatDialog) {
+    private userProfileDataService: UserProfileDataService, private dialog: MatDialog, private formBuilder: FormBuilder) {
     this.editAble = false;
 
   }
@@ -47,9 +52,17 @@ export class UserProfileComponent implements OnInit {
     }, (error) => {
       this.messageService.failedMessage(error);
     });
+    this.fourFormGroup = this.formBuilder.group({
+      image: ['', Validators.required],
+      miniImage: ['', Validators.required],
+    });
   }
   updateProfile() {
-    this.userProfileDataService.updateUserData(this.userData).subscribe(() => {
+    this.validateImagesExists();
+    this.createObjectForUpdateUserData();
+    this.userProfileDataService.updateUserData(this.userDataForm).subscribe(response => {
+      this.userData = response.message;
+      this.afterUpdate();
     }, (error) => {
       this.messageService.failedMessage(JSON.stringify(error));
     });
@@ -87,5 +100,51 @@ export class UserProfileComponent implements OnInit {
         this.shutdownAccount = true;
       }
     });
+  }
+  createObjectForUpdateUserData() {
+    this.userDataForm.append('id', this.userData.id);
+    this.userDataForm.append('email', this.userData.email);
+    this.userDataForm.append('firstname', this.userData.firstname);
+    this.userDataForm.append('lastname', this.userData.lastname);
+    this.userDataForm.append('password', this.userData.password);
+    this.userDataForm.append('age', this.userData.age as any);
+    this.userDataForm.append('favoritePop', this.userData.favoritePop);
+    this.userDataForm.append('numberOfPops', this.userData.numberOfPops as any);
+    this.userDataForm.append('yearOfStartCollection', this.userData.yearOfStartCollection);
+    this.userDataForm.append('profileImage', this.fourFormGroup.value.image);
+    this.userDataForm.append('miniImage', this.fourFormGroup.value.miniImage);
+  }
+  validateImagesExists() {
+    if (!this.fourFormGroup.value.miniImage) {
+      this.fourFormGroup.value.miniImage = this.userData.miniImage;
+    }
+    if (!this.fourFormGroup.value.image) {
+      this.fourFormGroup.value.image = this.userData.profileImage;
+    }
+  }
+  afterUpdate() {
+    this.userDataForm = new FormData();
+    this.imagePreview = '';
+    this.miniImagePreview = '';
+  }
+  onProfileImagePicked(event: Event) {
+    const file = (event.target as HTMLInputElement).files[0];
+    this.fourFormGroup.patchValue({ image: file });
+    this.fourFormGroup.get('image').updateValueAndValidity();
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.imagePreview = reader.result as string;
+    };
+    reader.readAsDataURL(file);
+  }
+  onMiniProfileImagePicked(event: Event) {
+    const file = (event.target as HTMLInputElement).files[0];
+    this.fourFormGroup.patchValue({ miniImage: file });
+    this.fourFormGroup.get('miniImage').updateValueAndValidity();
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.miniImagePreview = reader.result as string;
+    };
+    reader.readAsDataURL(file);
   }
 }

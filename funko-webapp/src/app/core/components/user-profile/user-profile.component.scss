@@ -106,6 +106,24 @@
   background-color: white;
 }
 
+#image-preview {
+
+  width: 200px;
+  height: 200px;
+  margin: auto;
+  display: block;
+  margin-top: 2%;
+}
+
+#mini-image-preview {
+  width: 50px;
+  height: 50px;
+  margin: auto;
+  display: block;
+  margin-top: 2%;
+  border-radius: 50%;
+}
+
 @media only screen and (max-width:800px) {
   .profile-section {
     background-color: #21252933;
@@ -124,7 +142,12 @@
   .mat-card-header .mat-card-subtitle {
     font-size: 18px;
   }
-  .placeholder,.mat-button,.first-card,.mat-card-content,.second-card,
+
+  .placeholder,
+  .mat-button,
+  .first-card,
+  .mat-card-content,
+  .second-card,
   .third-card {
     font-size: 16px;
   }
