@@ -1,7 +1,7 @@
-import { Controller, Put, Body, UseInterceptors, UploadedFile, UploadedFiles } from '@nestjs/common';
+import { Body, Controller, Put, UploadedFiles, UseInterceptors } from '@nestjs/common';
+import { FileFieldsInterceptor } from '@nestjs/platform-express';
 import { RegisterDto } from 'src/components/auth/dto/register.dto';
 import { UserDataService } from '../service/user-data.service';
-import { FileFieldsInterceptor } from '@nestjs/platform-express';
 
 @Controller('user-data')
 export class UserDataController {

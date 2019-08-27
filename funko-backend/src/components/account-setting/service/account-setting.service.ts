@@ -7,7 +7,11 @@ import { Repository } from 'typeorm';
 export class AccountSettingService {
     constructor(@InjectRepository(AuthEntity)
     private accountSettingRepository: Repository<AuthEntity>) { }
-    async recoverPassword(email: string) {
-        await this.accountSettingRepository.findOne({ email });
+    async recoverLostAccountPassword(email: string) {
+        const result =  await this.accountSettingRepository.findOne({ email });
+        if (result) {
+            return result;
+        }
+        return 'משתמש לא קיים';
     }
 }

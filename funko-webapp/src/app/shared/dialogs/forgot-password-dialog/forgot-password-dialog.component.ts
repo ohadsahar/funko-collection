@@ -12,7 +12,8 @@ export class ForgotPasswordDialogComponent {
   constructor(private accountService: AccountService) { }
   forgotPassword(form: NgForm) {
     if (form.invalid) { return; }
-    this.accountService.recoverPassword(form.value.email).subscribe(response => {
+
+    this.accountService.recoverPassword(form.value).subscribe(response => {
       console.log(response);
     });
   }

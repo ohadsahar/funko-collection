@@ -33,9 +33,6 @@ export class LoginService {
       this.messageService.failedMessage(error);
     });
   }
-  updateProfileImage(id: string, image: FormData) {
-    return this.http.put<{ message: any, success: boolean }>(`${backendUrl}/${id}`, image);
-  }
   logout() {
     localStorage.removeItem('token');
     this.authStatusListener.next(false);
