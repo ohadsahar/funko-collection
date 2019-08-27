@@ -12,10 +12,14 @@ import { LoginSystemNavbarComponent } from './core/components/login-system/login
 import { MainMenuComponent } from './core/components/main-menu/main-menu.component';
 import { MainNavbarComponent } from './core/components/main-navbar/main-navbar.component';
 import { AngularMaterialModule } from './modules/angular-material.module';
+import { ForgotPasswordDialogComponent } from './shared/dialogs/forgot-password-dialog/forgot-password-dialog.component';
 import { FreezeAccountDialogComponent } from './shared/dialogs/freeze-account-dialog/freeze-account-dialog.component';
 import { LoginDialogComponent } from './shared/dialogs/login-dialog/login-dialog.component';
 import { RegisterDialogComponent } from './shared/dialogs/register-dialog/register-dialog.component';
+import { RestoreAccountDialogComponent } from './shared/dialogs/restore-account-dialog/restore-account-dialog.component';
 import { ShutdownAccountDialogComponent } from './shared/dialogs/shutdown-account-dialog/shutdown-account-dialog.component';
+
+
 
 @NgModule({
   declarations: [
@@ -28,6 +32,8 @@ import { ShutdownAccountDialogComponent } from './shared/dialogs/shutdown-accoun
     MainNavbarComponent,
     FreezeAccountDialogComponent,
     ShutdownAccountDialogComponent,
+    ForgotPasswordDialogComponent,
+    RestoreAccountDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,7 +46,7 @@ import { ShutdownAccountDialogComponent } from './shared/dialogs/shutdown-accoun
     AngularMaterialModule
   ],
   entryComponents: [RegisterDialogComponent, LoginDialogComponent, FreezeAccountDialogComponent,
-  ShutdownAccountDialogComponent],
+    ShutdownAccountDialogComponent, RestoreAccountDialogComponent, ForgotPasswordDialogComponent],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })

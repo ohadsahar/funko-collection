@@ -51,10 +51,6 @@ export class ProfileCardComponent implements OnInit {
     this.userDataForm.append('miniImage', this.fourFormGroup.value.miniImage);
   }
   validateData() {
-    if (!(this.userData.age || this.userData.firstname)) {
-      console.log('here');
-      return false;
-    }
     if (!this.fourFormGroup.value.miniImage) {
       this.fourFormGroup.value.miniImage = this.userData.miniImage;
     }
@@ -66,7 +62,7 @@ export class ProfileCardComponent implements OnInit {
     this.userDataForm = new FormData();
     this.imagePreview = '';
     this.miniImagePreview = '';
-    // this.editAble = false;
+    this.editAble = false;
   }
   beforeEdit() {
     this.backupUserData = Object.assign({}, this.userData);

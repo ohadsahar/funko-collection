@@ -12,6 +12,17 @@
       <li class="nav-item">
         <a class="nav-link" (click)="register()"><i class="fas fa-registered"></i> הרשמה</a>
       </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          אפשרויות
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item"(click)="forgotPassword()"><i class="fas fa-unlock-alt"></i>
+            שכחתי את הסיסמא שלי </a>
+          <a class="dropdown-item" (click)="restoreAccount()"><i class="fas fa-trash-restore"></i> שחזר חשבון</a>
+        </div>
+      </li>
     </ul>
   </div>
 </nav>
@@ -29,6 +40,17 @@
       <li class="nav-item">
         <a class="nav-link" (click)="register()"><i class="fas fa-registered"></i> הרשמה</a>
       </li>
+      <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            אפשרויות
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item"(click)="forgotPassword()"><i class="fas fa-unlock-alt"></i>
+              שכחתי את הסיסמא שלי </a>
+            <a class="dropdown-item" (click)="restoreAccount()"><i class="fas fa-trash-restore"></i> שחזר חשבון</a>
+          </div>
+        </li>
     </ul>
   </div>
 </nav>
