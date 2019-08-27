@@ -20,8 +20,8 @@ export class ProfileCardComponent implements OnInit {
   fourFormGroup: FormGroup;
   userDataForm = new FormData();
   constructor(private loginService: LoginService,
-              private shareDataService: ShareDataService, private messageService: MessageService,
-              private formBuilder: FormBuilder, private userProfileDataService: UserProfileDataService) { }
+    private shareDataService: ShareDataService, private messageService: MessageService,
+    private formBuilder: FormBuilder, private userProfileDataService: UserProfileDataService) { }
   ngOnInit() {
     this.onLoadComponent();
   }
@@ -50,7 +50,11 @@ export class ProfileCardComponent implements OnInit {
     this.userDataForm.append('profileImage', this.fourFormGroup.value.image);
     this.userDataForm.append('miniImage', this.fourFormGroup.value.miniImage);
   }
-  validateImagesExists() {
+  validateData() {
+    if (!(this.userData.age || this.userData.firstname)) {
+      console.log('here');
+      return false;
+    }
     if (!this.fourFormGroup.value.miniImage) {
       this.fourFormGroup.value.miniImage = this.userData.miniImage;
     }
@@ -62,6 +66,7 @@ export class ProfileCardComponent implements OnInit {
     this.userDataForm = new FormData();
     this.imagePreview = '';
     this.miniImagePreview = '';
+    // this.editAble = false;
   }
   beforeEdit() {
     this.backupUserData = Object.assign({}, this.userData);
@@ -76,7 +81,7 @@ export class ProfileCardComponent implements OnInit {
     this.afterUpdate();
   }
   updateProfile() {
-    this.validateImagesExists();
+    this.validateData();
     this.createObjectForUpdateUserData();
     this.userProfileDataService.updateUserData(this.userDataForm).subscribe(response => {
       this.userData = response.message;
