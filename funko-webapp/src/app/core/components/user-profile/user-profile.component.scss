@@ -129,6 +129,7 @@
   border-radius: 50%;
 }
 
+
 @media only screen and (max-width:800px) {
   .profile-section {
     background-color: #21252933;
@@ -147,6 +148,7 @@
   }
 }
 
+
 @media only screen and(min-width:800px) {
 
   .mat-card-header .mat-card-title {
@@ -163,6 +165,6 @@
   .mat-card-content,
   .second-card,
   .third-card {
-    font-size: 16px;
+    font-size: 18px;
   }
 }
