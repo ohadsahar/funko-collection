@@ -11,5 +11,7 @@ export class ForgotPasswordDialogComponent implements OnInit {
 
   ngOnInit() {
   }
+  forgotPassword() {
 
+  }
 }

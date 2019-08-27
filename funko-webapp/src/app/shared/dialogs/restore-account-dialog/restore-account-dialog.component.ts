@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -11,7 +11,6 @@ export class RestoreAccountDialogComponent {
   regExp = new RegExp('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$');
   restoreAccount(form: NgForm) {
     if (form.invalid && this.regExp.test(form.value.email)) { return; }
-    console.log(form.value);
   }
 
 }
