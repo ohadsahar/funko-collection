@@ -24,7 +24,7 @@ export class LoginService {
         localStorage.setItem('token', response.message.accessToken);
         this.authStatusListener.next(true);
         this.dialog.closeAll();
-        this.router.navigate(['profile']);
+        this.router.navigate(['user-profile/profile']);
         this.messageService.successMessage('התחברת בהצלחה, מיד תועבר');
       } else {
         this.messageService.failedMessage('שם המשתמש או הסיסמא אינם נכונים');
@@ -53,7 +53,7 @@ export class LoginService {
     const token = this.getAuthData();
     if (token) {
       this.authStatusListener.next(true);
-      this.router.navigate(['account-settings/account']);
+      this.router.navigate(['user-profile/profile']);
     }
   }
   getAuthStatusListener() {
