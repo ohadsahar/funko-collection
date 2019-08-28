@@ -15,8 +15,8 @@
                 ברוכים הבאים {{fullname}}
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" [routerLink]="['user-profile/profile']"> <i class="fas fa-globe-europe"></i> עולם ה-Funko </a>
-                <a class="dropdown-item" href="#"><i class="fas fa-cogs"></i> הגדרות בטיחות</a>
+                <a class="dropdown-item" [routerLink]="['user-profile/profile']" (click)="changeView('עולם ה-Funko')"> <i class="fas fa-globe-europe"></i> עולם ה-Funko </a>
+                <a class="dropdown-item" [routerLink]="['account-settings/account']" (click)="changeView('הגדרות בטיחות')"><i class="fas fa-cogs"></i> הגדרות בטיחות</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" (click)="logout()"><i class="fas fa-sign-out-alt"></i> התנתק</a>
               </div>

@@ -53,6 +53,7 @@ export class LoginService {
     const token = this.getAuthData();
     if (token) {
       this.authStatusListener.next(true);
+      this.router.navigate(['account-settings/account']);
     }
   }
   getAuthStatusListener() {

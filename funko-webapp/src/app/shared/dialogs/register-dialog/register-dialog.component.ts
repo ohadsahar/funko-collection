@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RegisterInterface } from '../../interfaces/register.interface';
 import { LoginService } from './../../../core/services/login.service';
 import { MessageService } from './../../../core/services/message.service';
-import { UserProfileSettingService } from 'src/app/core/services/user-profile-settings.service';
+import { UserProfileSettingService } from 'src/app/core/services/user-account-settings.service';
 import { PrivacySettings } from '../../interfaces/privacy-settings.interface';
 @Component({
   selector: 'app-register-dialog',

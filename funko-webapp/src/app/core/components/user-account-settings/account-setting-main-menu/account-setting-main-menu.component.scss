@@ -1,0 +1,34 @@
+.navbar-expand-lg .navbar-collapse {
+  direction: rtl;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  cursor: pointer;
+}
+
+.login-navbar {
+  text-align: right;
+  font-size: 15px;
+  padding: 15px;
+  direction: ltr !important;
+  background-color: white !important;
+  margin-top: 20%;
+}
+
+.navbar-light .navbar-toggler {
+  background-color: transparent;
+  border: none;
+}
+
+.navbar-nav {
+  font-weight: bold;
+  padding: 10px;
+  display: block;
+  font-size: 21px;
+}
+
+@media only screen and (max-width:800px) {
+  .login-navbar {
+    margin-top: 0%;
+  }
+}

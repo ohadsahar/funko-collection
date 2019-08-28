@@ -1,11 +1,11 @@
+import { Body, Controller, Get, Param, Post, Res, UploadedFiles, UseGuards, UseInterceptors } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
+import { FileFieldsInterceptor } from '@nestjs/platform-express';
+import { AuthEntity } from '../../../entities/auth.entity';
+import { LoginDto } from '../dto/login.dto';
+import { GetUser } from '../get-user.decorator';
 import { RegisterDto } from './../dto/register.dto';
 import { AuthService } from './../service/auth.service';
-import { Controller, Post, Body, Get, UseGuards, Logger, UseInterceptors, UploadedFile, Put, Param, UploadedFiles, Res } from '@nestjs/common';
-import { LoginDto } from '../dto/login.dto';
-import { AuthGuard } from '@nestjs/passport';
-import { GetUser } from '../get-user.decorator';
-import { AuthEntity } from '../../../entities/auth.entity';
-import { FilesInterceptor, FileFieldsInterceptor } from '@nestjs/platform-express';
 
 @Controller('auth')
 export class AuthController {

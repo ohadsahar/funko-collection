@@ -19,7 +19,9 @@ export class MainNavbarComponent implements OnInit {
     this.onLoadComponent();
   }
   onLoadComponent() {
-    this.currentView = 'פרופיל אישי';
+    this.shareDataService.currentView.subscribe(data => {
+      this.currentView = data;
+    });
     this.shareDataService.currentUser.subscribe(response => {
       if (response) {
         this.fullname = response.firstname + ' ' + response.lastname;
@@ -27,6 +29,9 @@ export class MainNavbarComponent implements OnInit {
     }, (error) => {
       this.messageService.failedMessage(error);
     });
+  }
+  changeView(value: string) {
+    this.shareDataService.changeView(value);
   }
   logout() {
     this.loginService.logout();

@@ -23,3 +23,5 @@ export async function createRegisterObject(user: AuthEntity, registerData: Regis
     user.miniImage = registerData.miniImage;
     return user;
 }
+
+
