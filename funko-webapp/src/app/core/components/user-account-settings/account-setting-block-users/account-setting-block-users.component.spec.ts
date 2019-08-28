@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { AccountSettingRecoverySettingsComponent } from './account-setting-block-users.component';
 
-import { AccountSettingRecoverySettingsComponent } from './account-setting-recovery-settings.component';
 
 describe('AccountSettingRecoverySettingsComponent', () => {
   let component: AccountSettingRecoverySettingsComponent;
