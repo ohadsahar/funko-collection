@@ -16,6 +16,6 @@ export class AccountSettingRecoverySettingsComponent implements OnInit {
     this.onLoadComponent();
   }
   onLoadComponent() {
-    console.log('should get blocked users if there is some');
+
   }
 }

@@ -20,6 +20,7 @@ export class LoginService {
   }
   login(loginData: LoginInterface) {
     this.http.post<{ message: any }>(`${backendUrl}/login`, loginData).subscribe(response => {
+      console.log(response);
       if (response.message.accessToken) {
         localStorage.setItem('token', response.message.accessToken);
         this.authStatusListener.next(true);
@@ -27,7 +28,7 @@ export class LoginService {
         this.router.navigate(['user-profile/profile']);
         this.messageService.successMessage('התחברת בהצלחה, מיד תועבר');
       } else {
-        this.messageService.failedMessage('שם המשתמש או הסיסמא אינם נכונים');
+        this.messageService.failedMessage(response.message);
       }
     }, (error) => {
       this.messageService.failedMessage(error);

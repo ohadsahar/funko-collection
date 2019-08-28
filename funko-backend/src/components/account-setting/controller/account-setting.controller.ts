@@ -29,10 +29,24 @@ export class AccountSettingController {
             return { message: error, success: false };
         }
     }
-
     @UseGuards(AuthGuard())
-    @Put('/recover-account')
-    async recoverAccount() {
-        return 'HI';
+    @Put('/freeze-account')
+    async freezeAccount(@GetUser() user: AuthEntity) {
+        try {
+            const freezeAccountResult = await this.accountSettingService.freezeAccount(user);
+            return { message: freezeAccountResult, success: true };
+        } catch (error) {
+            return { message: error, success: false };
+        }
+    }
+    @Put('/unfreeze-account')
+    async unFreezeAccount(@GetUser() user: AuthEntity) {
+        try {
+            console.log(user);
+            const freezeAccountResult = await this.accountSettingService.unFreezeUserAccount(user);
+            return { message: freezeAccountResult, success: true };
+        } catch (error) {
+            return { message: error, success: false };
+        }
     }
 }

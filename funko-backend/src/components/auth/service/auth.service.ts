@@ -34,6 +34,10 @@ export class AuthService {
             const email = loginData.email;
             const finduser = await this.authRepository.findOne({ email });
             if (finduser) {
+                if (finduser.password && await authUtil.validatePassword(loginData.password, finduser.salt, finduser.password)
+                    && finduser.freeze === true) {
+                    return 'חשבון זה הוקפא, על מנת לשחרר אותו גש לאפשרויות';
+                }
                 if (finduser.password === finduser.id) {
                     const payload: JwtPayload = { email };
                     const accessToken = await this.jwtService.sign(payload);
@@ -44,9 +48,8 @@ export class AuthService {
                     const accessToken = await this.jwtService.sign(payload);
                     return { accessToken };
                 }
-                return { accessToken: null };
             }
-            return { accessToken: null };
+            return 'שם משתמש או סיסמא לא נכונים';
         } catch (error) {
             throw new Error('User not found');
         }

@@ -41,4 +41,7 @@ export class AuthEntity {
 
     @Column()
     miniImage: string;
+
+    @Column()
+    freeze: boolean;
 }

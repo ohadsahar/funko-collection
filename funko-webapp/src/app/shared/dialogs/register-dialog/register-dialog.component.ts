@@ -44,7 +44,7 @@ export class RegisterDialogComponent implements OnInit {
     });
     this.secondFormGroup = this.formBuilder.group({
       password: [null, [Validators.required, Validators.minLength(8), Validators.maxLength(8)]],
-      age: [null,[ Validators.required, Validators.min(6), Validators.max(120)]]
+      age: [null, [Validators.required, Validators.min(6), Validators.max(120)]]
     });
     this.thirdFormGroup = this.formBuilder.group({
       favoritePop: ['', Validators.required],

@@ -13,5 +13,5 @@
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>ביטול <i class="far fa-window-close"></i> </button>
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>הקפא אותי <i class="fas fa-igloo"></i> </button>
+  <button mat-button [mat-dialog-close]="true" (click)="freezeAccount()" cdkFocusInitial>הקפא אותי <i class="fas fa-igloo"></i> </button>
 </mat-dialog-actions>

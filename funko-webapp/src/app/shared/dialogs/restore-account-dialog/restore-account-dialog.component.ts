@@ -14,7 +14,7 @@ export class RestoreAccountDialogComponent {
   regExp = new RegExp('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$');
   restoreAccount(form: NgForm) {
     if (form.invalid && this.regExp.test(form.value.email)) { return; }
-    this.accountService.recoverAccount(form.value).subscribe(response => {
+    this.accountService.unfreezeAccount(form.value).subscribe(response => {
       console.log(response);
     }, (error) => {
       this.messageService.failedMessage(JSON.stringify(error));

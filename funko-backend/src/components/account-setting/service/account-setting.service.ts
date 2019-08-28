@@ -24,7 +24,6 @@ export class AccountSettingService {
         }
         return 'משתמש לא קיים';
     }
-
     async changeAccountPassword(password: string, user: AuthEntity) {
         const id = user.id;
         const salt = await bcrypt.genSalt();
@@ -32,5 +31,15 @@ export class AccountSettingService {
         await this.accountSettingRepository.update({ id }, { password: newPassword, salt });
         return 'הסיסמא שונתה בהצלחה';
     }
-
+    async freezeAccount(user: AuthEntity) {
+        const id = user.id;
+        await this.accountSettingRepository.update({ id }, { freeze: true });
+        return await this.accountSettingRepository.findOne({ id });
+    }
+    async unFreezeUserAccount(user: AuthEntity) {
+        console.log(user);
+        const id = user.id;
+        await this.accountSettingRepository.update({ id }, { freeze: false });
+        return await this.accountSettingRepository.findOne({ id });
+    }
 }

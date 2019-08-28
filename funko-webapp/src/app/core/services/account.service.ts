@@ -13,7 +13,10 @@ export class AccountService {
   updatePassword(password: string) {
     return this.http.put<{message: string}>(`${backendUrl}/change-password`, password);
   }
-  recoverAccount(email: string) {
-    return this.http.put<{message: string}>(`${backendUrl}/recover-account`, email);
+  freezeAccount() {
+    return this.http.put<{message: string}>(`${backendUrl}/freeze-account`, null);
+  }
+  unfreezeAccount(email: string) {
+    return this.http.put<{message: any}>(`${backendUrl}/unfreeze-account`, email);
   }
 }
