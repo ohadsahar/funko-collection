@@ -29,4 +29,10 @@ export class AccountSettingController {
             return { message: error, success: false };
         }
     }
+
+    @UseGuards(AuthGuard())
+    @Put('/recover-account')
+    async recoverAccount() {
+        return 'HI';
+    }
 }

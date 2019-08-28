@@ -1,5 +1,5 @@
+import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
 import { AccountService } from '../../../services/account.service';
 import { MessageService } from '../../../services/message.service';
 
@@ -8,12 +8,10 @@ import { MessageService } from '../../../services/message.service';
   templateUrl: './change-password.component.html',
   styleUrls: ['./change-password.component.scss']
 })
-export class ChangePasswordComponent implements OnInit {
-
+export class ChangePasswordComponent {
+  hide = true;
   constructor(private accountService: AccountService, private messageService: MessageService) { }
 
-  ngOnInit() {
-  }
   changePass(form: NgForm) {
     if (form.invalid) { return; }
     this.accountService.updatePassword(form.value).subscribe(() => {
