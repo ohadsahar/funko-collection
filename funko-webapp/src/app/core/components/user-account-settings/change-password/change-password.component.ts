@@ -1,5 +1,7 @@
 import { NgForm } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { AccountService } from '../../../services/account.service';
+import { MessageService } from '../../../services/message.service';
 
 @Component({
   selector: 'app-change-password',
@@ -8,13 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChangePasswordComponent implements OnInit {
 
-  constructor() { }
+  constructor(private accountService: AccountService, private messageService: MessageService) { }
 
   ngOnInit() {
   }
   changePass(form: NgForm) {
     if (form.invalid) { return; }
-    console.log(form.value);
+    this.accountService.updatePassword(form.value).subscribe(() => {
+      this.messageService.successMessage('הסיסמא שונתה בהצלחה');
+    }, (error) => {
+      this.messageService.failedMessage(JSON.stringify(error));
+    });
   }
-
 }

@@ -10,4 +10,7 @@ export class AccountService {
   recoverPassword(email: string) {
     return this.http.post<{ message: string }>(`${backendUrl}/recover-password`, email);
   }
+  updatePassword(password: string) {
+    return this.http.put<{message: string}>(`${backendUrl}/change-password`, password);
+  }
 }
