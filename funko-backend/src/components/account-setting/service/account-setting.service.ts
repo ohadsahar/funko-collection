@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import * as bcrypt from 'bcryptjs';
 import { Repository } from 'typeorm';
 import { AuthEntity } from '../../../entities/auth.entity';
-import * as emailUtil from '../../../utils/email.util';
-import * as bcrypt from 'bcryptjs';
 import * as authUtil from '../../../utils/auth.util';
-
+import * as emailUtil from '../../../utils/email.util';
+import { LoginDto } from '../../auth/dto/login.dto';
 @Injectable()
 export class AccountSettingService {
     constructor(@InjectRepository(AuthEntity)
@@ -36,10 +36,22 @@ export class AccountSettingService {
         await this.accountSettingRepository.update({ id }, { freeze: true });
         return await this.accountSettingRepository.findOne({ id });
     }
-    async unFreezeUserAccount(user: AuthEntity) {
-        console.log(user);
-        const id = user.id;
-        await this.accountSettingRepository.update({ id }, { freeze: false });
-        return await this.accountSettingRepository.findOne({ id });
+    async unFreezeUserAccount(loginData: LoginDto) {
+        const email = loginData.email;
+        const finduser = await this.accountSettingRepository.findOne({ email });
+        if (finduser) {
+            if (finduser.password && await authUtil.validatePassword(loginData.password, finduser.salt, finduser.password)) {
+                if (finduser.freeze === true) {
+                    const id = finduser.id;
+                    const resultOfUpdate = await this.accountSettingRepository.update({ id }, { freeze: false });
+                    if (resultOfUpdate) {
+                        return 'חשבונך שוחרר, אתה יכול להתחבר מחדש';
+                    }
+                } else {
+                    return 'חשבונך אינו קפוא, אתה יכול להתחבר';
+                }
+            }
+            return 'שם משתמש או סיסמא לא נכונים';
+        }
     }
 }

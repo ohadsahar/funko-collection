@@ -15,7 +15,7 @@ export class RestoreAccountDialogComponent {
   restoreAccount(form: NgForm) {
     if (form.invalid && this.regExp.test(form.value.email)) { return; }
     this.accountService.unfreezeAccount(form.value).subscribe(response => {
-      console.log(response);
+      this.messageService.successMessage(response.message);
     }, (error) => {
       this.messageService.failedMessage(JSON.stringify(error));
     });

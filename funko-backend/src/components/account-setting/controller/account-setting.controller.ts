@@ -5,6 +5,7 @@ import { RecoverPasswordDto } from '../dto/recover-password.dto';
 import { AccountSettingService } from './../service/account-setting.service';
 import { ChangePasswordDto } from '../dto/update-password.dto';
 import { AuthGuard } from '@nestjs/passport';
+import { LoginDto } from '../../auth/dto/login.dto';
 
 @Controller('account-setting')
 export class AccountSettingController {
@@ -40,10 +41,9 @@ export class AccountSettingController {
         }
     }
     @Put('/unfreeze-account')
-    async unFreezeAccount(@GetUser() user: AuthEntity) {
+    async unFreezeAccount(@Body() loginData: LoginDto) {
         try {
-            console.log(user);
-            const freezeAccountResult = await this.accountSettingService.unFreezeUserAccount(user);
+            const freezeAccountResult = await this.accountSettingService.unFreezeUserAccount(loginData);
             return { message: freezeAccountResult, success: true };
         } catch (error) {
             return { message: error, success: false };

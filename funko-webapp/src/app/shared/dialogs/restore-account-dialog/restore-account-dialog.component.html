@@ -8,6 +8,11 @@
         <mat-hint>לאחר שחזור חשבונך, תוכל להתחבר מחדש</mat-hint>
         <mat-error *ngIf="email.invalid">חובה להכניס איימיל</mat-error>
       </mat-form-field>
+      <mat-form-field class="full-width">
+        <input matInput type="password" name="password" #password="ngModel" ngModel autocomplete="password" required>
+        <mat-placeholder class="placeholder">הכנס את סיסמתך</mat-placeholder>
+        <mat-error *ngIf="password.invalid">חובה להכניס סיסמא</mat-error>
+      </mat-form-field>
       <mat-dialog-actions align="end">
         <button mat-raised-button color="link" type="submit" cdkFocusInitial>שחזר חשבון</button>
         <button mat-raised-button color="warn" mat-dialog-close id="cancel-button">ביטול</button>
