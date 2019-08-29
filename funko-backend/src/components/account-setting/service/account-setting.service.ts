@@ -17,12 +17,8 @@ export class AccountSettingService {
             await this.accountSettingRepository.update({ id }, { password: result.id });
             const updatedData = await this.accountSettingRepository.findOne({ id });
             const mailData = emailUtil.createObjectForMail(updatedData);
-            const mailResult = await emailUtil.sendMail(mailData);
-            if (mailResult) {
-                return 'המייל נשלח בהצלחה';
-            }
+            return await emailUtil.sendMail(mailData);
         }
-        return 'משתמש לא קיים';
     }
     async changeAccountPassword(password: string, user: AuthEntity) {
         const id = user.id;
@@ -40,7 +36,7 @@ export class AccountSettingService {
         const email = loginData.email;
         const finduser = await this.accountSettingRepository.findOne({ email });
         if (finduser) {
-            if (finduser.password && await authUtil.validatePassword(loginData.password, finduser.salt, finduser.password)) {
+            if (await authUtil.validatePassword(loginData.password, finduser.salt, finduser.password)) {
                 if (finduser.freeze === true) {
                     const id = finduser.id;
                     const resultOfUpdate = await this.accountSettingRepository.update({ id }, { freeze: false });
@@ -56,7 +52,7 @@ export class AccountSettingService {
     }
     async deleteAccount(user: AuthEntity) {
         const id = user.id;
-        const deleteResult = this.accountSettingRepository.delete({id});
+        const deleteResult = await this.accountSettingRepository.delete({id});
         if (deleteResult) {
             return 'משתמש נמחק בהצלחה';
         } else {

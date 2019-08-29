@@ -1,11 +1,11 @@
 import { Body, Controller, Post, Put, UseGuards } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import { GetUser } from 'src/components/auth/get-user.decorator';
 import { AuthEntity } from 'src/entities/auth.entity';
-import { RecoverPasswordDto } from '../dto/recover-password.dto';
-import { AccountSettingService } from './../service/account-setting.service';
-import { ChangePasswordDto } from '../dto/update-password.dto';
-import { AuthGuard } from '@nestjs/passport';
 import { LoginDto } from '../../auth/dto/login.dto';
+import { RecoverPasswordDto } from '../dto/recover-password.dto';
+import { ChangePasswordDto } from '../dto/update-password.dto';
+import { AccountSettingService } from './../service/account-setting.service';
 
 @Controller('account-setting')
 export class AccountSettingController {

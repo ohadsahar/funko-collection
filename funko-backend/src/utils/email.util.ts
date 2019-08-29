@@ -26,13 +26,17 @@ export async function sendMail(mailData: RecoverMailDto) {
         const dataTransport = {
             to: `${mailData.email}`,
             subject: 'פאנקו ישראל - הרשת החברתית הגדולה ביותר',
-            html:`<div style="direction:rtl">
+            html: `<div style="direction:rtl">
             <p>היי <b>${mailData.firstname} ${mailData.lastname}</b> ראינו ששכחת את הסיסמא שלך<br>
             אז אל דאגה, הנה הסיסמא הזמנית שלך <b>${mailData.password}</b><br>לאחר שתתחבר תוכל לשנות את הסיסמא שלך בדרך הבאה : <ul>
             <li>הגדרות חשבון -> החלף סיסמא</li></ul></p>
             </div>`,
         };
-        return await transporter.sendMail(dataTransport);
+        const resultSendMail = await transporter.sendMail(dataTransport);
+        if (resultSendMail) {
+            return 'המייל נשלח בהצלחה';
+        }
+        return 'משתמש לא קיים';
     } catch (error) {
         throw new Error(`Error has been found: ${error}`);
     }
