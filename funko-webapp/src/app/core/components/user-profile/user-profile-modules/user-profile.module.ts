@@ -5,11 +5,14 @@ import { AngularMaterialModule } from '../../../../modules/angular-material.modu
 import { AccountSettingCardComponent } from '../account-setting-card/account-setting-card.component';
 import { PrivacySettingCardComponent } from '../privacy-setting-card/privacy-setting-card.component';
 import { ProfileCardComponent } from '../profile-card/profile-card.component';
-import { MainMenuComponent } from '../profile-main-menu/main-menu.component';
+
 import { UserProfileComponent } from '../user-profile.component';
 import { UserRoutingProfileModule } from './user-profile-routing.module';
+import { MainMenuComponent } from '../profile-main-menu/main-menu.component';
+
+
 @NgModule({
-  declarations: [UserProfileComponent, ProfileCardComponent, PrivacySettingCardComponent, AccountSettingCardComponent, MainMenuComponent],
+  declarations: [UserProfileComponent, ProfileCardComponent, PrivacySettingCardComponent,MainMenuComponent, AccountSettingCardComponent],
   imports: [CommonModule, UserRoutingProfileModule, AngularMaterialModule, FormsModule]
 })
 export class UserProfileModule { }

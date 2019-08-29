@@ -19,6 +19,7 @@ import { RestoreAccountDialogComponent } from './shared/dialogs/restore-account-
 import { ShutdownAccountDialogComponent } from './shared/dialogs/shutdown-account-dialog/shutdown-account-dialog.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
