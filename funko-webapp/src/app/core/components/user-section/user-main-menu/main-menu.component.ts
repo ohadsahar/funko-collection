@@ -19,10 +19,10 @@ export class MainMenuComponent implements OnInit {
   navigate(value: string) {
     switch (value) {
       case 'profile':
-        this.router.navigate(['user-profile/profile'], { replaceUrl: true });
+        this.router.navigate(['user-section/profile'], { replaceUrl: true });
         break;
       case 'collection':
-        this.router.navigate(['user-profile/collection'], { replaceUrl: true });
+        this.router.navigate(['user-section/collection'], { replaceUrl: true });
         break;
       default:
         this.router.navigate(['account-settings/account/change-password'], { replaceUrl: true });

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { UserProfileComponent } from '../user-profile.component';
-import { UserCollectionComponent } from '../../user-collection/user-collection.component';
+import { UserProfileComponent } from '../user-profile/user-profile.component';
+import { UserCollectionComponent } from '../user-collection/user-collection.component';
 
 
 const routes: Routes = [{ path: 'profile', component: UserProfileComponent },
@@ -10,4 +10,4 @@ const routes: Routes = [{ path: 'profile', component: UserProfileComponent },
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class UserRoutingProfileModule { }
+export class UserSectionRoutingModule { }
