@@ -1,6 +1,7 @@
 .main-nav-component h1 {
   padding: 10px;
   font-size: 35px;
+  color: white;
 }
 
 .main-nav-component .bg-light {
@@ -11,8 +12,20 @@
   text-align: right;
   font-size: 20px;
   cursor: pointer;
+  color: white;
 }
 
+.dropdown-item:hover {
+  background-color: #565888;
+}
 .main-nav-component .navbar-light .navbar-nav .nav-link {
   font-size: 20px;
+  color: white;
+}
+
+.dropdown-menu {
+  background-color: rgba(0, 0, 0, 0.82) !important;
+  margin-top: 20%;
+  border-radius: 5px;
+  color: white;
 }

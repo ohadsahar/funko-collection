@@ -15,8 +15,8 @@ export class UserDataService {
         userData = await authUtil.updateAccountData(userData, files);
         await this.userDataRepository.update({ id }, {
             email: userData.email, password: userData.password, firstname: userData.firstname,
-            age: Number(userData.age), favoritePop: userData.favoritePop, numberOfPops: Number(userData.numberOfPops),
-            yearOfStartCollection: userData.yearOfStartCollection, profileImage: userData.profileImage,
+            lastname: userData.lastname, age: Number(userData.age), favoritePop: userData.favoritePop,
+            numberOfPops: Number(userData.numberOfPops), yearOfStartCollection: userData.yearOfStartCollection, profileImage: userData.profileImage,
             miniImage: userData.miniImage,
         });
         return await this.userDataRepository.findOne({ id });

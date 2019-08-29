@@ -63,6 +63,7 @@ export class ProfileCardComponent implements OnInit {
     this.imagePreview = '';
     this.miniImagePreview = '';
     this.editAble = false;
+    this.shareDataService.changeUser(this.userData);
   }
   beforeEdit() {
     this.backupUserData = Object.assign({}, this.userData);

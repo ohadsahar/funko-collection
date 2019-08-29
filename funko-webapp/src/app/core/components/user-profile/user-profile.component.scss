@@ -2,7 +2,8 @@
   background-color: #21252933;
   height: auto;
   border-radius: 5%;
-  padding: 30px;
+  padding: 8px;
+  width: 100vh !important;
 }
 
 ::ng-deep .edit-section .mat-form-field-appearance-legacy .mat-form-field-infix {
@@ -98,6 +99,11 @@
   width: 100%;
 }
 
+::ng-deep .profile-section .mat-slide-toggle-content {
+  width: 300px;
+  font-size: 14px;
+}
+
 ::ng-deep .profile-section .mat-slide-toggle-bar {
   background-color: rgb(255, 3, 3);
   margin-left: 2%;
@@ -136,6 +142,7 @@
     border-radius: 5%;
     padding: 10px;
     margin-top: 30%;
+    width: 100% !important;
   }
 
   .placeholder,
@@ -145,6 +152,10 @@
   .second-card,
   .third-card {
     font-size: 17px;
+  }
+
+  ::ng-deep .profile-section .mat-slide-toggle-content {
+    width: 300px;
   }
 }
 
@@ -165,6 +176,6 @@
   .mat-card-content,
   .second-card,
   .third-card {
-    font-size: 18px;
+    font-size: 14px;
   }
 }

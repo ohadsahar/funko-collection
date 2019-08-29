@@ -4,6 +4,7 @@
 
 .navbar-light .navbar-nav .nav-link {
   cursor: pointer;
+  color: white;
 }
 
 .login-navbar {
@@ -11,8 +12,9 @@
   font-size: 15px;
   padding: 15px;
   direction: ltr !important;
-  background-color: white !important;
+  background-color: rgba(0, 0, 0, 0.24) !important;
   margin-top: 20%;
+  border-radius: 5px;
 }
 
 .navbar-light .navbar-toggler {
@@ -25,6 +27,10 @@
   padding: 10px;
   display: block;
   font-size: 15px;
+}
+
+.fa-hamburger:before {
+  color: white;
 }
 
 @media only screen and (max-width:800px) {
