@@ -49,4 +49,14 @@ export class AccountSettingController {
             return { message: error, success: false };
         }
     }
+    @UseGuards(AuthGuard())
+    @Put('/shutdown-account')
+    async deleteAccount(@GetUser() user: AuthEntity) {
+        try {
+            const resultOfDeleteAccount = await this.accountSettingService.deleteAccount(user);
+            return { message: resultOfDeleteAccount, success: true };
+        } catch (error) {
+            return { message: error, success: false };
+        }
+    }
 }

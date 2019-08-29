@@ -19,4 +19,7 @@ export class AccountService {
   unfreezeAccount(email: string) {
     return this.http.put<{message: any}>(`${backendUrl}/unfreeze-account`, email);
   }
+  shutdownAccount() {
+    return this.http.put<{message: string}>(`${backendUrl}/shutdown-account`, null);
+  }
 }

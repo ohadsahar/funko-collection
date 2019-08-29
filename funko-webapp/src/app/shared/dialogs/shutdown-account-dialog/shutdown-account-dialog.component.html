@@ -12,6 +12,6 @@
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>ביטול <i class="far fa-window-close"></i> </button>
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>השבת את חשבוני <i class="fas fa-power-off"></i>
+  <button mat-button [mat-dialog-close]="true" (click)="shutdown()" cdkFocusInitial>השבת את חשבוני <i class="fas fa-power-off"></i>
   </button>
 </mat-dialog-actions>

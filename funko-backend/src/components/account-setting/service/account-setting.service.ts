@@ -54,4 +54,13 @@ export class AccountSettingService {
             return 'שם משתמש או סיסמא לא נכונים';
         }
     }
+    async deleteAccount(user: AuthEntity) {
+        const id = user.id;
+        const deleteResult = this.accountSettingRepository.delete({id});
+        if (deleteResult) {
+            return 'משתמש נמחק בהצלחה';
+        } else {
+            return 'ישנה בעיה עם מחיקת המשתמש';
+        }
+    }
 }
