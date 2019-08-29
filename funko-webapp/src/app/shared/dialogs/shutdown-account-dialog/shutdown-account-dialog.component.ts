@@ -11,7 +11,7 @@ import { LoginService } from '../../../core/services/login.service';
 export class ShutdownAccountDialogComponent {
 
   constructor(private accountService: AccountService, private messageService: MessageService,
-              private loginService: LoginService) { }
+    private loginService: LoginService) { }
 
   shutdown() {
     this.accountService.shutdownAccount().subscribe(response => {
