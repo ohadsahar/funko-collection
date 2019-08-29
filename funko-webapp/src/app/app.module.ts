@@ -18,8 +18,6 @@ import { RegisterDialogComponent } from './shared/dialogs/register-dialog/regist
 import { RestoreAccountDialogComponent } from './shared/dialogs/restore-account-dialog/restore-account-dialog.component';
 import { ShutdownAccountDialogComponent } from './shared/dialogs/shutdown-account-dialog/shutdown-account-dialog.component';
 
-
-
 @NgModule({
   declarations: [
     AppComponent,

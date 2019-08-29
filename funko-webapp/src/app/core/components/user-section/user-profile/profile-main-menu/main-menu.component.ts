@@ -21,8 +21,8 @@ export class MainMenuComponent implements OnInit {
       case 'profile':
         this.router.navigate(['user-profile/profile'], { replaceUrl: true });
         break;
-      case 'block-users':
-        this.router.navigate(['account-settings/account/block-users'], { replaceUrl: true });
+      case 'collection':
+        this.router.navigate(['user-profile/collection'], { replaceUrl: true });
         break;
       default:
         this.router.navigate(['account-settings/account/change-password'], { replaceUrl: true });

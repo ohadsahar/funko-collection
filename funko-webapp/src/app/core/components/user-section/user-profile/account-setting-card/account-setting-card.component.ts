@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { ShutdownAccountDialogComponent } from 'src/app/shared/dialogs/shutdown-account-dialog/shutdown-account-dialog.component';
-import { FreezeAccountDialogComponent } from '../../../../shared/dialogs/freeze-account-dialog/freeze-account-dialog.component';
+import { FreezeAccountDialogComponent } from '../../../../../shared/dialogs/freeze-account-dialog/freeze-account-dialog.component';
 
 @Component({
   selector: 'app-account-setting-card',

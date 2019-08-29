@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PrivacySettings } from 'src/app/shared/interfaces/privacy-settings.interface';
-import { MessageService } from '../../../services/message.service';
-import { UserProfileSettingService } from '../../../services/user-account-settings.service';
+import { MessageService } from '../../../../services/message.service';
+import { UserProfileSettingService } from '../../../../services/user-account-settings.service';
 
 @Component({
   selector: 'app-privacy-setting-card',

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ShareDataService } from 'src/app/core/services/share-data.service';
-import { RegisterInterface } from '../../../../shared/interfaces/register.interface';
-import { LoginService } from '../../../services/login.service';
-import { MessageService } from '../../../services/message.service';
-import { UserProfileDataService } from '../../../services/user-profile-data.service';
+import { RegisterInterface } from '../../../../../shared/interfaces/register.interface';
+import { LoginService } from '../../../../services/login.service';
+import { MessageService } from '../../../../services/message.service';
+import { UserProfileDataService } from '../../../../services/user-profile-data.service';
 
 @Component({
   selector: 'app-profile-card',
