@@ -16,7 +16,7 @@ export class UserCollectionComponent implements OnInit {
   paginatorData = new PaginatorModel(0, 0);
   constructor(private userProfileDataService: UserProfileDataService) {
     this.paginatorData.skip = 0;
-    this.paginatorData.limit = 5;
+    this.paginatorData.limit = 10;
   }
 
   ngOnInit() {
@@ -34,7 +34,6 @@ export class UserCollectionComponent implements OnInit {
       if (i >= this.filesToUpload.length) {
         this.userProfileDataService.uploadUserImagesCollection(this.collectionFormData).subscribe(response => {
           this.collectionFormData = new FormData();
-          console.log(response.message);
           response.message.forEach(element => {
             this.imagesArray.push(element);
           });
@@ -48,8 +47,8 @@ export class UserCollectionComponent implements OnInit {
     this.filesToUpload = fileInput.target.files as Array<File>;
   }
   loadMore() {
-    this.paginatorData.limit += 5;
-    this.paginatorData.skip += 5;
+    this.paginatorData.limit += 10;
+    this.paginatorData.skip += 10;
     if (this.counter < this.paginatorData.limit) {
       this.paginatorData.limit = this.counter;
       this.paginatorData.skip = this.counter - this.paginatorData.skip;
