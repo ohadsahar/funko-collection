@@ -18,3 +18,23 @@
   height: 200px;
   margin-top: 1%;
 }
+.image-form {
+  text-align: center;
+  margin: auto;
+  display: block;
+  margin-bottom: 1%;
+}
+
+#load-more-button {
+  margin-top: 2%;
+  font-weight: bold;
+}
+#addimage {
+  font-weight: bold;
+}
+
+@media only screen and(max-width:800px) {
+  .collection-section {
+    width: 100% !important;
+  }
+}

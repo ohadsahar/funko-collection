@@ -10,8 +10,8 @@ export class ImagesUserEntity {
     @CreateDateColumn()
     created: Date;
 
-    @Column('simple-array')
-    images: string[];
+    @Column()
+    images: string;
 
     @Column()
     userId: string;

@@ -1,10 +1,11 @@
-import { Body, Controller, Post, Put, UploadedFiles, UseInterceptors, UseGuards, Get } from '@nestjs/common';
+import { Body, Controller, Post, Put, UploadedFiles, UseGuards, UseInterceptors } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import { FileFieldsInterceptor, FilesInterceptor } from '@nestjs/platform-express';
 import { RegisterDto } from 'src/components/auth/dto/register.dto';
-import { UserDataService } from '../service/user-data.service';
 import { GetUser } from 'src/components/auth/get-user.decorator';
+import { PaginatorDto } from 'src/components/privacy/dto/paginator.dto';
 import { AuthEntity } from 'src/entities/auth.entity';
-import { AuthGuard } from '@nestjs/passport';
+import { UserDataService } from '../service/user-data.service';
 
 @Controller('user-data')
 export class UserDataController {
@@ -21,7 +22,6 @@ export class UserDataController {
             return { message: error, success: false };
         }
     }
-
     @Put('/update-user-data')
     @UseInterceptors(FileFieldsInterceptor([
         { name: 'profileImage', maxCount: 1 },
@@ -35,12 +35,11 @@ export class UserDataController {
             return { message: error, success: false };
         }
     }
-
     @UseGuards(AuthGuard())
-    @Get('/get-user-images')
-    async get(@GetUser() user: AuthEntity) {
+    @Post('/get-user-images')
+    async getAllImages(@Body() paginator: PaginatorDto, @GetUser() user: AuthEntity) {
         try {
-            const resultOfImages = await this.userDataService.getImagesForUser(user);
+            const resultOfImages = await this.userDataService.getImagesForUser(user, paginator);
             return { message: resultOfImages, success: true };
         } catch (error) {
             return { message: error, success: false };

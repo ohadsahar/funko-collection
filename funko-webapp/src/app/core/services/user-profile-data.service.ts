@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { RegisterInterface } from '../../shared/interfaces/register.interface';
 import { UserImages } from '../../shared/interfaces/user-images.interface';
+import { PaginatorModel } from '../../shared/interfaces/paginator.interface';
 
 const backendUrl = environment.backendUrlProfileData;
 @Injectable({ providedIn: 'root' })
@@ -15,7 +16,7 @@ export class UserProfileDataService {
   updateUserData(userData: FormData) {
     return this.http.put<{ message: RegisterInterface }>(`${backendUrl}/update-user-data`, userData);
   }
-  getAllImages() {
-    return this.http.get<{ message: any }>(`${backendUrl}/get-user-images`);
+  getAllImages(paginatorData: PaginatorModel) {
+    return this.http.post<{ message: any }>(`${backendUrl}/get-user-images`, paginatorData);
   }
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { PaginatorModel } from '../../../../shared/interfaces/paginator.interface';
 import { UserProfileDataService } from '../../../services/user-profile-data.service';
-import { UserImages } from 'src/app/shared/interfaces/user-images.interface';
 
 @Component({
   selector: 'app-user-collection',
@@ -8,20 +8,24 @@ import { UserImages } from 'src/app/shared/interfaces/user-images.interface';
   styleUrls: ['./user-collection.component.scss']
 })
 export class UserCollectionComponent implements OnInit {
-
   filesToUpload: Array<File> = [];
   imagePreview: string;
   collectionFormData = new FormData();
   imagesArray: Array<any> = [];
-  constructor(private userProfileDataService: UserProfileDataService) { }
+  counter: number;
+  paginatorData = new PaginatorModel(0, 0);
+  constructor(private userProfileDataService: UserProfileDataService) {
+    this.paginatorData.skip = 0;
+    this.paginatorData.limit = 5;
+  }
 
   ngOnInit() {
-    this.userProfileDataService.getAllImages().subscribe(response => {
-      response.message.forEach(element => {
-        element.forEach(image => {
-          this.imagesArray.push(image);
-        });
-      });
+    this.loadImages();
+  }
+  loadImages() {
+    this.userProfileDataService.getAllImages(this.paginatorData).subscribe(response => {
+      this.counter = response.message.count;
+      this.imagesArray = response.message.images;
     });
   }
   uploadImage() {
@@ -29,8 +33,12 @@ export class UserCollectionComponent implements OnInit {
     for (i = 0; i <= this.filesToUpload.length; i++) {
       if (i >= this.filesToUpload.length) {
         this.userProfileDataService.uploadUserImagesCollection(this.collectionFormData).subscribe(response => {
-          console.log(response);
-        })
+          this.collectionFormData = new FormData();
+          console.log(response.message);
+          response.message.forEach(element => {
+            this.imagesArray.push(element);
+          });
+        });
       } else {
         this.collectionFormData.append('files[]', this.filesToUpload[i], this.filesToUpload[i].name);
       }
@@ -38,5 +46,14 @@ export class UserCollectionComponent implements OnInit {
   }
   fileChangeEvent(fileInput: any): void {
     this.filesToUpload = fileInput.target.files as Array<File>;
+  }
+  loadMore() {
+    this.paginatorData.limit += 5;
+    this.paginatorData.skip += 5;
+    if (this.counter < this.paginatorData.limit) {
+      this.paginatorData.limit = this.counter;
+      this.paginatorData.skip = this.counter - this.paginatorData.skip;
+    }
+    this.loadImages();
   }
 }

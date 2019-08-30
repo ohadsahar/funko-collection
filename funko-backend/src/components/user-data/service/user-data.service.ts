@@ -1,13 +1,16 @@
 import { Injectable, UploadedFiles } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { PaginatorDto } from 'src/components/privacy/dto/paginator.dto';
 import { Repository } from 'typeorm';
 import { AuthEntity } from '../../../entities/auth.entity';
+import { ImagesUserEntity } from '../../../entities/user-images.entity';
 import * as authUtil from '../../../utils/auth.util';
 import { RegisterDto } from '../../auth/dto/register.dto';
-import { ImagesUserEntity } from '../../../entities/user-images.entity';
 
 @Injectable()
 export class UserDataService {
+
+    public imagesAdded: string[] = [];
     constructor(@InjectRepository(AuthEntity)
     private userDataRepository: Repository<AuthEntity>,
         @InjectRepository(ImagesUserEntity)
@@ -24,26 +27,29 @@ export class UserDataService {
         });
         return await this.userDataRepository.findOne({ id });
     }
-
     async uploadUserImages(@UploadedFiles() files, user: AuthEntity) {
+        files.forEach(async (file) => {
+            await this.saveImage(file, user);
+        });
+        return this.imagesAdded;
+    }
+    async saveImage(file, user: AuthEntity) {
         const imageUsers = new ImagesUserEntity();
         imageUsers.user = user;
-        const arrayImages = [];
-        files.forEach((file) => {
-            file = `http://localhost:3000/auth/${file.filename}`;
-            arrayImages.push(file);
-        });
-        imageUsers.images = arrayImages;
+        file = `http://localhost:3000/auth/${file.filename}`;
+        this.imagesAdded.push(file);
+        imageUsers.images = file;
         await this.userImageRepository.save(imageUsers);
-        return 'done';
     }
-
-    async getImagesForUser(user: AuthEntity) {
+    async getImagesForUser(user: AuthEntity, paginator: PaginatorDto) {
+        const id = user.id;
+        const counter = await this.userImageRepository.count({ userId: id });
         const query = this.userImageRepository.createQueryBuilder('image');
-        query.where('image.userId = :userId', { userId: user.id });
+        query.where('image.userId = :userId', { userId: user.id }).limit(paginator.limit).skip(paginator.skip);
         const allUserImages = await query.getMany();
-        return allUserImages.map(element => {
-            return element.images;
+        const resultMappedImages = allUserImages.map(element => {
+            return { images: element.images };
         });
+        return { images: resultMappedImages, count: counter };
     }
 }

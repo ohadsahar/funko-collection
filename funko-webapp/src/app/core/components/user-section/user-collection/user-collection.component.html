@@ -3,20 +3,22 @@
     <app-main-menu></app-main-menu>
   </div>
   <div class="col-sm-12 col-md-9 col-lg-9">
+    <form enctype="multipart/form-data" class="image-form">
+      <button mat-raised-button color="acceny" (click)="filePicker.click()" id="addimage">הוסף תמונות</button>
+      <input type="file" #filePicker (change)="fileChangeEvent($event)" style="visibility: hidden" multiple>
+      <button type="button" (click)="uploadImage()" mat-raised-button color="primary"
+        *ngIf="filesToUpload.length > 0 ">העלה תמונות</button>
+    </form>
     <div class="collection-component">
       <section class="collection-section">
-        <form enctype="multipart/form-data">
-          <button mat-raised-button color="acceny" (click)="filePicker.click()" id="addimage">Add image</button>
-          <input type="file" #filePicker (change)="fileChangeEvent($event)" style="visibility: hidden" multiple>
-          <button type="button" (click)="uploadImage()" mat-raised-button color="primary">Upload the image</button>
-        </form>
         <div class="row">
-            <div *ngFor="let image of imagesArray">
-              <div class="col-sm-12 col-md-12 col-lg-12">
-                <img src="{{image}}" class="img-thumbnail">
-              </div>
+          <div *ngFor="let image of imagesArray">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+              <img src="{{image?.images}}" class="img-thumbnail">
             </div>
           </div>
+        </div>
+        <button mat-raised-button color="link" id="load-more-button" type="button" (click)="loadMore()" *ngIf="counter > paginatorData.limit">טען עוד</button>
       </section>
     </div>
   </div>
