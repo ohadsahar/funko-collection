@@ -1,5 +1,4 @@
-import { AuthEntity } from 'src/entities/auth.entity';
-import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, Unique, ManyToMany } from 'typeorm';
+import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, Unique } from 'typeorm';
 
 @Entity()
 @Unique(['userId'])

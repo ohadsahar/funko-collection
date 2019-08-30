@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularMaterialModule } from '../../../../modules/angular-material.module';
 import { UserCollectionComponent } from '../user-collection/user-collection.component';
 import { MainMenuComponent } from '../user-main-menu/main-menu.component';
@@ -14,6 +14,6 @@ import { UserSectionRoutingModule } from './user-section-routing.module';
 @NgModule({
   declarations: [UserProfileComponent, ProfileCardComponent, PrivacySettingCardComponent, MainMenuComponent,
     AccountSettingCardComponent, UserCollectionComponent],
-  imports: [CommonModule, UserSectionRoutingModule, AngularMaterialModule, FormsModule]
+  imports: [CommonModule, UserSectionRoutingModule, AngularMaterialModule, FormsModule, ReactiveFormsModule]
 })
 export class UserSectionModule { }

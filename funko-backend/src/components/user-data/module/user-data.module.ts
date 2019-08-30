@@ -5,9 +5,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthEntity } from '../../../entities/auth.entity';
 import { AuthModule } from '../../auth/module/auth.module';
 import { MulterModule } from '@nestjs/platform-express';
+import { ImagesUserEntity } from '../../../entities/user-images.entity';
 
 @Module({
-    imports: [TypeOrmModule.forFeature([AuthEntity]), AuthModule, MulterModule.register({ dest: './upload' })],
+    imports: [TypeOrmModule.forFeature([AuthEntity, ImagesUserEntity]), AuthModule, MulterModule.register({ dest: './upload' })],
     controllers: [UserDataController],
     providers: [UserDataService],
 })

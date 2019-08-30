@@ -1,11 +1,11 @@
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UserProfileSettingService } from 'src/app/core/services/user-account-settings.service';
+import { PrivacySettings } from '../../interfaces/privacy-settings.interface';
 import { RegisterInterface } from '../../interfaces/register.interface';
 import { LoginService } from './../../../core/services/login.service';
 import { MessageService } from './../../../core/services/message.service';
-import { UserProfileSettingService } from 'src/app/core/services/user-account-settings.service';
-import { PrivacySettings } from '../../interfaces/privacy-settings.interface';
 @Component({
   selector: 'app-register-dialog',
   templateUrl: './register-dialog.component.html',
@@ -30,7 +30,7 @@ export class RegisterDialogComponent implements OnInit {
   userData: RegisterInterface = new RegisterInterface('', '', '', '', '', 0, '', 0, '', null, null);
   privacySettings: PrivacySettings = new PrivacySettings(null, false, false, false, false, false, false);
   constructor(private loginService: LoginService, private messageService: MessageService,
-    private formBuilder: FormBuilder, private userProfileSettingService: UserProfileSettingService) { }
+              private formBuilder: FormBuilder, private userProfileSettingService: UserProfileSettingService) { }
 
   ngOnInit() {
     this.onLoadComponent();
