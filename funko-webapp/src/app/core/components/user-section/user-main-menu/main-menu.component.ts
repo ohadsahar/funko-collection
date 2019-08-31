@@ -24,6 +24,9 @@ export class MainMenuComponent implements OnInit {
       case 'collection':
         this.router.navigate(['user-section/collection'], { replaceUrl: true });
         break;
+      case 'funko-wall':
+        this.router.navigate(['user-section/funko-wall'], { replaceUrl: true });
+        break;
       default:
         this.router.navigate(['account-settings/account/change-password'], { replaceUrl: true });
         break;

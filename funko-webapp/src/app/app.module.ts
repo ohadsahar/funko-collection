@@ -12,37 +12,18 @@ import { LoginSystemNavbarComponent } from './core/components/login-system/login
 import { MainNavbarComponent } from './core/components/main-navbar/main-navbar.component';
 import { AngularMaterialModule } from './modules/angular-material.module';
 import { ForgotPasswordDialogComponent } from './shared/dialogs/forgot-password-dialog/forgot-password-dialog.component';
-import { FreezeAccountDialogComponent } from './shared/dialogs/freeze-account-dialog/freeze-account-dialog.component';
 import { LoginDialogComponent } from './shared/dialogs/login-dialog/login-dialog.component';
 import { RegisterDialogComponent } from './shared/dialogs/register-dialog/register-dialog.component';
 import { RestoreAccountDialogComponent } from './shared/dialogs/restore-account-dialog/restore-account-dialog.component';
-import { ShutdownAccountDialogComponent } from './shared/dialogs/shutdown-account-dialog/shutdown-account-dialog.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    LoginSystemContentComponent,
-    LoginSystemNavbarComponent,
-    LoginDialogComponent,
-    RegisterDialogComponent,
-    MainNavbarComponent,
-    FreezeAccountDialogComponent,
-    ShutdownAccountDialogComponent,
-    ForgotPasswordDialogComponent,
-    RestoreAccountDialogComponent,
-  ],
+    AppComponent, LoginSystemContentComponent, LoginSystemNavbarComponent, LoginDialogComponent,
+    RegisterDialogComponent, MainNavbarComponent, ForgotPasswordDialogComponent, RestoreAccountDialogComponent],
   imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    DeviceDetectorModule.forRoot(),
-    BrowserAnimationsModule,
-    HttpClientModule,
-    ReactiveFormsModule,
-    AngularMaterialModule
-  ],
-  entryComponents: [RegisterDialogComponent, LoginDialogComponent, FreezeAccountDialogComponent,
-    ShutdownAccountDialogComponent, RestoreAccountDialogComponent, ForgotPasswordDialogComponent],
+    BrowserModule, AppRoutingModule, FormsModule, DeviceDetectorModule.forRoot(),
+    BrowserAnimationsModule, HttpClientModule, ReactiveFormsModule, AngularMaterialModule],
+  entryComponents: [RegisterDialogComponent, LoginDialogComponent, RestoreAccountDialogComponent, ForgotPasswordDialogComponent],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
