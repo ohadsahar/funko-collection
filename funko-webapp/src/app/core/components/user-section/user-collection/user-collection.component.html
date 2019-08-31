@@ -18,9 +18,12 @@
             </div>
           </div>
         </div>
-        <button mat-raised-button color="link" id="load-more-button" type="button" (click)="loadMore()" *ngIf="counter > paginatorData.limit">טען עוד</button>
+        <section class="paginator-section">
+          <p>{{imagesArray.length}} / {{counter}}</p>
+          <button mat-raised-button color="link" id="load-more-button" type="button" (click)="loadMore()"
+            *ngIf="counter > paginatorData.limit">טען עוד</button>
+        </section>
       </section>
     </div>
   </div>
 </div>
-

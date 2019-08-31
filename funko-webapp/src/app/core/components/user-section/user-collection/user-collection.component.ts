@@ -9,7 +9,6 @@ import { UserProfileDataService } from '../../../services/user-profile-data.serv
 })
 export class UserCollectionComponent implements OnInit {
   filesToUpload: Array<File> = [];
-  imagePreview: string;
   collectionFormData = new FormData();
   imagesArray: Array<any> = [];
   counter: number;
@@ -18,7 +17,6 @@ export class UserCollectionComponent implements OnInit {
     this.paginatorData.skip = 0;
     this.paginatorData.limit = 10;
   }
-
   ngOnInit() {
     this.loadImages();
   }
