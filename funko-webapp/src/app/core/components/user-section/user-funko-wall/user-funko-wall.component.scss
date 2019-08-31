@@ -1,3 +1,41 @@
 .funko-wall-component {
   height: 100vh;
 }
+
+.funko-wall-component .profile-mini-image {
+  background-size: cover;
+}
+
+.funko-wall-component .profile-mini-image img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.funko-wall-component .first-card {
+  max-width: auto;
+  margin: auto;
+  margin-top: 3%;
+  border-radius: 30px 30px 30px 30px;
+  width: 50%;
+}
+
+.funko-wall-component .first-card .mat-raised-button {
+  margin: auto;
+  display: block;
+  font-weight: bold;
+}
+
+.min-full-width {
+  width: 50%;
+}
+
+.full-width {
+  width: 100%;
+}
+
+@media only screen and(max-width:800px) {
+  .funko-wall-component .first-card {
+    width: 100%;
+  }
+}

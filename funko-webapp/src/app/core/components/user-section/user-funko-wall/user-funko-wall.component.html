@@ -4,7 +4,36 @@
   </div>
   <div class="col-sm-12 col-md-9 col-lg-9">
     <div class="funko-wall-component">
-
+      <mat-card class="first-card">
+        <mat-card-header>
+          <div mat-card-avatar class="profile-mini-image"><img src="{{userData?.miniImage}}">
+          </div>
+          <mat-card-title>{{userData?.firstname}} {{userData?.lastname}}</mat-card-title>
+          <mat-card-subtitle>אוסף פופים מאז {{userData?.yearOfStartCollection}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-divider id="header-divider"></mat-divider>
+        <mat-card-content *ngIf="!editAble">
+          <form #postForm="ngForm" (submit)="registerPost(postForm)" ngForm>
+            <mat-form-field class="min-full-width">
+              <mat-label>גודל פונט</mat-label>
+              <mat-select #fontSize value="16px" [(value)]="selectedFont" (selectionChange)="triggerResize()">
+                <mat-option *ngFor="let font of fonts" [value]="font?.value">
+                  {{font?.value}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+              <mat-label>מזמן לא כתבת משהו</mat-label>
+              <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
+                cdkAutosizeMaxRows="5" name="textPost" #textPost="ngModel" ngModel [style.fontSize]="selectedFont"
+                required></textarea>
+            </mat-form-field>
+            <mat-card-actions>
+              <button mat-raised-button color="link" type="submit">פרסם</button>
+            </mat-card-actions>
+          </form>
+        </mat-card-content>
+      </mat-card>
     </div>
   </div>
 </div>
