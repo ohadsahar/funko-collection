@@ -1,13 +1,11 @@
 import { NgModule } from '@angular/core';
 import {
-  MatDividerModule, MatDialogModule, MatInputModule, MatButtonModule, MatCardModule, MatSnackBarModule,
-  MatSlideToggleModule, MatStepperModule, MatRadioModule, MatPaginatorModule
+  MatButtonModule, MatCardModule, MatDialogModule, MatDividerModule,
+  MatInputModule, MatStepperModule, MatSnackBarModule
 } from '@angular/material';
 @NgModule({
-  imports: [MatDividerModule, MatDialogModule, MatInputModule, MatButtonModule, MatCardModule, MatSnackBarModule,
-    MatSlideToggleModule, MatStepperModule, MatRadioModule, MatPaginatorModule],
-  exports: [MatDividerModule, MatDialogModule, MatInputModule, MatButtonModule, MatCardModule, MatSnackBarModule,
-    MatSlideToggleModule, MatStepperModule, MatRadioModule, MatPaginatorModule]
+  imports: [MatDividerModule, MatDialogModule, MatInputModule, MatButtonModule, MatCardModule, MatStepperModule, MatSnackBarModule],
+  exports: [MatDividerModule, MatDialogModule, MatInputModule, MatButtonModule, MatCardModule, MatStepperModule, MatSnackBarModule]
 })
 
 export class AngularMaterialModule { }
