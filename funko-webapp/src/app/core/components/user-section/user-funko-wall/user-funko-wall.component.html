@@ -14,14 +14,6 @@
         <mat-divider id="header-divider"></mat-divider>
         <mat-card-content *ngIf="!editAble">
           <form #postForm="ngForm" (submit)="registerPost(postForm)" ngForm>
-            <mat-form-field class="min-full-width">
-              <mat-label>גודל פונט</mat-label>
-              <mat-select #fontSize value="16px" [(value)]="selectedFont" (selectionChange)="triggerResize()">
-                <mat-option *ngFor="let font of fonts" [value]="font?.value">
-                  {{font?.value}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
             <mat-form-field class="full-width">
               <mat-label>מזמן לא כתבת משהו</mat-label>
               <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"

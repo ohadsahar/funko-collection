@@ -7,7 +7,8 @@ export const environment = {
   backendUrlUsers: 'http://localhost:3000/auth',
   backendUrlSettings: 'http://localhost:3000/privacy-settings',
   backendUrlProfileData: 'http://localhost:3000/user-data',
-  backendUrlAccountSettings: 'http://localhost:3000/account-setting'
+  backendUrlAccountSettings: 'http://localhost:3000/account-setting',
+  backendUrlWall: 'http://localhost:3000/wall'
 };
 
 /*
