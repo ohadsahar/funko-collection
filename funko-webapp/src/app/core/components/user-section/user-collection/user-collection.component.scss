@@ -28,8 +28,9 @@
 
 .img-thumbnail {
   width: 300px;
-  height: 200px;
+  height: 300px;
   margin-top: 1%;
+  border-radius: 5%;
 }
 
 .image-form {
@@ -45,8 +46,17 @@
   margin-bottom: 3%;
 }
 
-#addimage {
+#add-image {
   font-weight: bold;
+  margin-top: 4%;
+  margin: auto;
+  display: block;
+}
+
+#upload-image-button {
+  margin: auto;
+  display: block;
+  margin-bottom: 1%;
 }
 
 @media only screen and(max-width:800px) {

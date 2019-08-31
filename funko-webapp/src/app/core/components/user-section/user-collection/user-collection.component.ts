@@ -32,8 +32,10 @@ export class UserCollectionComponent implements OnInit {
       if (i >= this.filesToUpload.length) {
         this.userProfileDataService.uploadUserImagesCollection(this.collectionFormData).subscribe(response => {
           this.collectionFormData = new FormData();
+          this.filesToUpload = [];
+          this.counter = this.imagesArray.length + response.message.length;
           response.message.forEach(element => {
-            this.imagesArray.push(element);
+            this.imagesArray.push({ images: element });
           });
         });
       } else {
