@@ -5,11 +5,14 @@ import { environment } from '../../../environments/environment';
 
 const backendUrl = environment.backendUrlWall;
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class WallService {
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
   registerPost(postData: PostInterface) {
-    return this.http.post<{message: PostInterface}>(`${backendUrl}/create-post`, postData);
+    return this.http.post<{ message: PostInterface }>(`${backendUrl}/create-post`, postData);
+  }
+  getPosts() {
+    return this.http.get<{ message: PostInterface[] }>(`${backendUrl}/get-posts`);
   }
 }

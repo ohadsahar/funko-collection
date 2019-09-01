@@ -1,8 +1,9 @@
 import { CdkTextareaAutosize } from '@angular/cdk/text-field';
-import { Component, NgZone, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ShareDataService } from 'src/app/core/services/share-data.service';
 import { PostInterface } from 'src/app/shared/interfaces/post.interface';
+import { WallService } from 'src/app/core/services/wall.service';
 
 @Component({
   selector: 'app-user-funko-wall',
@@ -11,9 +12,9 @@ import { PostInterface } from 'src/app/shared/interfaces/post.interface';
 })
 export class UserFunkoWallComponent implements OnInit {
   userData = new PostInterface('', '', '', '', '', '');
-  selectedFont: string;
-  constructor(private shareDataService: ShareDataService, private ngZone: NgZone) {
-    this.selectedFont = '16px';
+  posts: PostInterface[];
+  constructor(private shareDataService: ShareDataService, private wallService: WallService) {
+    this.posts = [];
   }
   @ViewChild('autosize', { static: false }) autosize: CdkTextareaAutosize;
   ngOnInit() {
@@ -22,8 +23,12 @@ export class UserFunkoWallComponent implements OnInit {
   onLoadComponent() {
     this.shareDataService.currentUser.subscribe(response => {
       this.assignVariables(response);
+      this.wallService.getPosts().subscribe(data => {
+        this.posts = data.message;
+      });
     });
   }
+
   assignVariables(response): void {
     this.userData.firstname = response.firstname;
     this.userData.lastname = response.lastname;
@@ -34,5 +39,8 @@ export class UserFunkoWallComponent implements OnInit {
   registerPost(form: NgForm) {
     if (form.invalid) { return; }
     this.userData.textPost = form.value.textPost;
+    this.wallService.registerPost(this.userData).subscribe(response => {
+      this.posts.push(response.message);
+    });
   }
 }

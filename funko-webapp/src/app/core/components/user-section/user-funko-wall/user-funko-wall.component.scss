@@ -12,13 +12,37 @@
   border-radius: 50%;
 }
 
-.funko-wall-component .first-card {
+.funko-wall-component .first-card,
+.post-card {
   max-width: auto;
   margin: auto;
   margin-top: 3%;
   border-radius: 30px 30px 30px 30px;
   width: 50%;
+  margin-bottom: 1%;
 }
+
+
+.funko-wall-component .post-card p {
+  white-space: pre;
+}
+
+.funko-wall-component .list-of-posts {
+  background-color: #21252933;
+  height: auto;
+  border-radius: 5%;
+  padding: 8px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  width: 100vh !important;
+  height: 500px;
+}
+
+.funko-wall-component .mat-card-actions {
+  margin: auto;
+  display: block;
+}
+
 
 .funko-wall-component .first-card .mat-raised-button {
   margin: auto;

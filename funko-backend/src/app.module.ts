@@ -7,13 +7,12 @@ import { AuthModule } from './components/auth/module/auth.module';
 import { PrivacySettingsModule } from './components/privacy/module/privacy-settings.module';
 import { UserDataModule } from './components/user-data/module/user-data.module';
 import { TypeOrmConfig } from './config/typeorm-config';
-import { WallController } from './wall/wall.controller';
-import { WallModule } from './wall/wall.module';
-import { WallService } from './wall/wall.service';
+import { WallModule } from './components/wall/module/wall.module';
 
 @Module({
-  imports: [PrivacySettingsModule, AuthModule, UserDataModule, AccountSettingModule, UserDataModule, TypeOrmModule.forRoot(TypeOrmConfig), WallModule],
-  controllers: [AppController, WallController],
-  providers: [AppService, WallService],
+  imports: [PrivacySettingsModule, AuthModule, UserDataModule,
+    AccountSettingModule, UserDataModule, TypeOrmModule.forRoot(TypeOrmConfig), WallModule],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule { }

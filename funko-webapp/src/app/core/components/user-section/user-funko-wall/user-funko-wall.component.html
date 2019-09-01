@@ -17,8 +17,7 @@
             <mat-form-field class="full-width">
               <mat-label>מזמן לא כתבת משהו</mat-label>
               <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
-                cdkAutosizeMaxRows="5" name="textPost" #textPost="ngModel" ngModel [style.fontSize]="selectedFont"
-                required></textarea>
+                cdkAutosizeMaxRows="5" name="textPost" #textPost="ngModel" ngModel required></textarea>
             </mat-form-field>
             <mat-card-actions>
               <button mat-raised-button color="link" type="submit">פרסם</button>
@@ -26,6 +25,26 @@
           </form>
         </mat-card-content>
       </mat-card>
+      <section class="list-of-posts">
+        <div *ngFor="let post of posts">
+          <mat-card class="post-card">
+            <mat-card-header>
+              <div mat-card-avatar class="profile-mini-image"><img src="{{post?.miniImage}}">
+              </div>
+              <mat-card-title>{{post?.firstname}} {{post?.lastname}}</mat-card-title>
+              <mat-card-subtitle>אוסף פופים מאז {{post?.yearOfStartCollection}}</mat-card-subtitle>
+            </mat-card-header>
+            <mat-divider id="header-divider"></mat-divider>
+            <mat-card-content>
+              <p>{{post?.textPost}}</p>
+            </mat-card-content>
+            <mat-card-actions>
+              <button mat-raised-button color="link"> תגובה</button>
+              <button mat-raised-button color="link"> הצג תגובות</button>
+            </mat-card-actions>
+          </mat-card>
+        </div>
+      </section>
     </div>
   </div>
 </div>

@@ -4,14 +4,14 @@
   </div>
   <div class="col-sm-12 col-md-9 col-lg-9">
     <div class="collection-component">
-      <section class="collection-section" *ngIf="imagesArray.length > 0">
+      <section class="collection-section" >
           <form enctype="multipart/form-data" class="image-form">
             <button mat-raised-button color="acceny" (click)="filePicker.click()" id="add-image">הוסף תמונות</button>
             <input type="file" #filePicker (change)="fileChangeEvent($event)" style="visibility: hidden" multiple>
             <button type="button" id="upload-image-button" (click)="uploadImage()" mat-raised-button color="primary"
               *ngIf="filesToUpload.length > 0 ">העלה תמונות</button>
           </form>
-        <div class="row">
+        <div class="row" *ngIf="imagesArray.length > 0">
           <div *ngFor="let image of imagesArray">
             <div class="col-sm-12 col-md-12 col-lg-12">
               <img src="{{image?.images}}" class="img-thumbnail">

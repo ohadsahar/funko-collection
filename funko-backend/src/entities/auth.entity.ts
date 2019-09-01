@@ -1,5 +1,6 @@
 import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, Unique, ManyToMany, OneToMany } from 'typeorm';
 import { ImagesUserEntity } from './user-images.entity';
+import { PostEntity } from './post.entity';
 
 @Entity()
 @Unique(['email'])
@@ -46,6 +47,9 @@ export class AuthEntity {
     @Column()
     freeze: boolean;
 
-    @OneToMany(type => ImagesUserEntity, userImages => userImages.user , { eager: true })
+    @OneToMany(type => ImagesUserEntity, userImages => userImages.user, { eager: true })
     images: ImagesUserEntity[];
+
+    @OneToMany(type => PostEntity, post => post.user, { eager: true })
+    posts: PostEntity[];
 }
